@@ -1,7 +1,7 @@
 import { IStat } from "../data/Stats";
 import { IStyleableProps } from "../utils/classnamesUtils";
 import { StatNames } from "./InfoTextArea/StatNames";
-import { combineClassnames } from "./../utils/classnamesUtils";
+import { combineClassnames } from "../utils/classnamesUtils";
 
 interface IStatsProps extends IStyleableProps {
     stats: IStat[];

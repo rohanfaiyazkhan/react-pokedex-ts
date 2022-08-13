@@ -1,7 +1,8 @@
 import React from "react";
+import ContextWrappers from "./contexts/ContextWrappers";
 
 const App: React.FC = () => {
-    return <div className="App"></div>;
+    return <ContextWrappers></ContextWrappers>;
 };
 
 export default App;

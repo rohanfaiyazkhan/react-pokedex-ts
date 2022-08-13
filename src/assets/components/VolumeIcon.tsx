@@ -1,8 +1,6 @@
-import React from "react";
+import React, { SVGProps } from "react";
 
-const SvgVolumeIcon: React.FC<React.SVGAttributes<HTMLOrSVGElement>> = (
-    props
-) => (
+const SvgVolumeIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => (
     <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path
             fill="currentColor"
