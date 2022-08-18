@@ -1,6 +1,6 @@
 import localforage from "localforage";
 import getCurrentTimeStamp from "../../utils/getCurrentTimeStamp";
-import { ResourceContainer } from "./ResourceContainer";
+import { ResourceContainer } from "../../data/ResourceContainer";
 export const LOCAL_STORAGE_NETWORK_CACHE_KEY = "networkCache";
 
 export class NetworkLocalCache {

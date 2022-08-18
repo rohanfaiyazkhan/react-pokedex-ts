@@ -1,20 +1,20 @@
 import { createContext, useContext } from "react";
-import { NetworkCacheAction } from "./NetworkCacheActions";
-import { ResourceContainer } from "./ResourceContainer";
-
-export type NetworkCacheDispatch = (action: NetworkCacheAction) => void;
+import {
+    IndividualResourceContainer,
+    ListResourceContainer,
+} from "../../data/ResourceContainer";
 
 const initialState = {};
-export const NetworkCacheContext =
-    createContext<ResourceContainer>(initialState);
-export const NetworkCacheDispatchContext = createContext<NetworkCacheDispatch>(
-    () => {}
-);
+export const IndividualNetworkCacheContext =
+    createContext<IndividualResourceContainer>(initialState);
 
-export function useNetworkCache(): ResourceContainer {
-    return useContext(NetworkCacheContext);
+export const ListResourceCacheContext =
+    createContext<ListResourceContainer>(initialState);
+
+export function useIndividualResourceCache(): IndividualResourceContainer {
+    return useContext(IndividualNetworkCacheContext);
 }
 
-export function useNetworkCacheDispatch() {
-    return useContext(NetworkCacheDispatchContext);
+export function useListResourceCache(): ListResourceContainer {
+    return useContext(ListResourceCacheContext);
 }

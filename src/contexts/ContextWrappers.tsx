@@ -1,22 +1,24 @@
-import { useReducer } from "react";
+import { useNetworkCacheState } from "./NetworkCacheLayer/useNetworkCacheState";
 import {
-    NetworkCacheContext,
-    NetworkCacheDispatchContext,
-    NetworkCacheDispatch,
+    IndividualNetworkCacheContext,
+    ListResourceCacheContext,
 } from "./NetworkCacheLayer/NetworkCacheContext";
-import { networkCacheReducer } from "./NetworkCacheLayer/networkCacheReducer";
+import { NetworkCacheStateHandlerContext } from "./NetworkCacheLayer/NetworkCacheStateHandlers";
 
 const NetworkCacheContextWrapper: React.FC<React.PropsWithChildren> = (
     props
 ) => {
-    const [state, dispatch] = useReducer(networkCacheReducer, {});
+    const { individualPokemonState, listPokemonState, stateHandlers } =
+        useNetworkCacheState();
 
     return (
-        <NetworkCacheContext.Provider value={state}>
-            <NetworkCacheDispatchContext.Provider value={dispatch}>
-                {props.children}
-            </NetworkCacheDispatchContext.Provider>
-        </NetworkCacheContext.Provider>
+        <IndividualNetworkCacheContext.Provider value={individualPokemonState}>
+            <ListResourceCacheContext.Provider value={listPokemonState}>
+                <NetworkCacheStateHandlerContext.Provider value={stateHandlers}>
+                    {props.children}
+                </NetworkCacheStateHandlerContext.Provider>
+            </ListResourceCacheContext.Provider>
+        </IndividualNetworkCacheContext.Provider>
     );
 };
 

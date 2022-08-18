@@ -1,4 +1,4 @@
-const mockSpeciesResponse = {
+export const mockSpeciesResponse = {
     base_happiness: 50,
     capture_rate: 45,
     color: {
@@ -1398,5 +1398,3 @@ const mockSpeciesResponse = {
         },
     ],
 };
-
-export default mockSpeciesResponse;

@@ -1,4 +1,4 @@
-import { BASE_API_URL } from "./NetworkConfig";
+import { BASE_API_URL, NumberOfItemsPerPage } from "./NetworkConfig";
 import { ValidResourceNames } from "./ValidResourceNames";
 
 const VALID_RESOURCE_NAMES = Object.values(ValidResourceNames);
@@ -9,7 +9,10 @@ const VALID_RESOURCE_NAMES = Object.values(ValidResourceNames);
  * @param  id (Optional) If fetching one resource, ID of said resource
  * @return URL of PokeAPI route to make a GET request to
  */
-export function getApiRoute(resourceName: ValidResourceNames, id?: number) {
+export function getSinglePokemonApiRoute(
+    resourceName: ValidResourceNames,
+    id?: number
+) {
     const isResourceUnexpected = !VALID_RESOURCE_NAMES.includes(resourceName);
 
     if (isResourceUnexpected) {
@@ -20,13 +23,26 @@ export function getApiRoute(resourceName: ValidResourceNames, id?: number) {
         );
     }
 
-    const urlArray = [BASE_API_URL];
+    const url = new URL(BASE_API_URL);
+    const pathArray = [];
 
-    urlArray.push(resourceName);
+    pathArray.push(resourceName);
 
     if (id !== undefined) {
-        urlArray.push(id.toString());
+        pathArray.push(id.toString());
     }
 
-    return urlArray.join("/");
+    url.pathname = url.pathname + "/" + pathArray.join("/");
+    return url;
+}
+
+export function getPokemonListApiRoute(
+    offset: number,
+    limit: number = NumberOfItemsPerPage.DEFAULT
+) {
+    const url = new URL(BASE_API_URL + "/pokemon");
+    url.searchParams.set("limit", limit.toString());
+    url.searchParams.set("offset", offset.toString());
+
+    return url;
 }

@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 
 const FIRST_POKEMON_ID = 1;
-const LAST_POKEMON_ID = 898;
+const LAST_POKEMON_ID = 1146;
 
 type IdAndIncrementorsTuples = [
     number,

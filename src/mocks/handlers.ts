@@ -1,17 +1,25 @@
 import { rest } from "msw";
-import { getApiRoute } from "../contexts/NetworkCacheLayer/getApiRoute";
+import {
+    getSinglePokemonApiRoute,
+    getPokemonListApiRoute,
+} from "../contexts/NetworkCacheLayer/getApiRoute";
 import { ValidResourceNames } from "../contexts/NetworkCacheLayer/ValidResourceNames";
 import { mockPokemonResponse } from "./pokemon.mock";
-import mockSpeciesResponse from "./species.mock";
+import { mockSpeciesResponse } from "./species.mock";
+import { mockListResponse } from "./listPokemon.mock";
 
-const pokemonRoute = getApiRoute(ValidResourceNames.Pokemon);
-const speciesRoute = getApiRoute(ValidResourceNames.Species);
+const pokemonRoute = getSinglePokemonApiRoute(ValidResourceNames.Pokemon);
+const speciesRoute = getSinglePokemonApiRoute(ValidResourceNames.Species);
+const listRoute = getPokemonListApiRoute(0, 100);
 
 export const handlers = [
-    rest.get(pokemonRoute + "/:id", (req, res, ctx) => {
+    rest.get(pokemonRoute.toString() + "/:id", (req, res, ctx) => {
         return res(ctx.json(mockPokemonResponse));
     }),
-    rest.get(speciesRoute + "/:id", (req, res, ctx) => {
+    rest.get(speciesRoute.toString() + "/:id", (req, res, ctx) => {
         return res(ctx.json(mockSpeciesResponse));
+    }),
+    rest.get(listRoute.toString(), (req, res, ctx) => {
+        return res(ctx.json(mockListResponse));
     }),
 ];
