@@ -1,9 +1,21 @@
 import React from "react";
+import SpriteCentrePiece from "./../SpriteCenterPiece/SpriteCentrePiece";
 
-interface IListCardProps {}
+interface IListCardProps {
+    pokemonId: number;
+}
 
-const ListCard: React.FC<IListCardProps> = (props) => {
-    return <div></div>;
+const ListCard: React.FC<IListCardProps> = ({ pokemonId }) => {
+    return (
+        <div className="relative px-8 py-12 bg-red-500 border border-gray-500 shadow-md rounded-lg flex flex-col items-center">
+            <div
+                aria-hidden
+                style={{ content: " " }}
+                className="h-1/2 w-full bottom-0 left-0 bg-red-100"
+            />
+            <SpriteCentrePiece pokemonId={pokemonId} />
+        </div>
+    );
 };
 
 export default ListCard;

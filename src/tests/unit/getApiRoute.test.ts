@@ -1,5 +1,5 @@
 import { ValidResourceNames } from "../../contexts/NetworkCacheLayer/ValidResourceNames";
-import { getApiRoute } from "./../../contexts/NetworkCacheLayer/getApiRoute";
+import { getApiRoute } from "../../utils/requests/getApiRoute";
 
 describe("Checks that getApiRoute works as expected", () => {
     it("Checks that the pokemon with id of 0 returns correct route", () => {

@@ -1,20 +1,76 @@
-export const TypeAppropriateBackgroundColors = Object.freeze({
-    normal: "hsla(172, 6%, 76%, 0.5)",
-    fire: "hsla(22, 61%, 60%, 0.5)",
-    water: "hsla(197, 63%, 56%, 0.5)",
-    grass: "hsla(158, 82%, 70%, 0.5)",
-    electric: "hsla(77, 71%, 76%, 0.5)",
-    ice: "hsla(197, 63%, 75%, 0.5)",
-    fighting: "hsla(21, 75%, 76%, 0.5)",
-    poison: "hsla(278, 66%, 76%, 0.5)",
-    ground: "hsla(21, 47%, 46%, 0.5)",
-    flying: "hsla(197, 63%, 66%, 0.5)",
-    psychic: "hsla(302, 22%, 58%, 0.5)",
-    bug: "hsla(164, 52%, 60%, 0.5)",
-    rock: "hsla(49, 37%, 50%, 0.5)",
-    ghost: "hsla(216, 67%, 40%, 0.5)",
-    dark: "hsla(216, 67%, 11%, 0.5)",
-    dragon: "hsla(216, 67%, 40%, 0.5)",
-    steel: "hsla(60, 0%, 76%, 0.5)",
-    fairy: "hsla(316, 74%, 77%, 0.5)",
+import { PokemonTypeNames } from "../../data/PokemonTypes";
+
+export const TypeAppropriateColorClassNames = Object.freeze({
+    [PokemonTypeNames.Normal]: {
+        text: "text-deep-orange-900",
+        bg: "bg-deep-orange-100",
+    },
+    [PokemonTypeNames.Fire]: {
+        text: "bg-gray-100",
+        bg: "bg-deep-orange-500",
+    },
+    [PokemonTypeNames.Water]: {
+        text: "text-blue-900",
+        bg: "bg-blue-200",
+    },
+    [PokemonTypeNames.Grass]: {
+        text: "text-green-900",
+        bg: "bg-light-green-400",
+    },
+    [PokemonTypeNames.Electric]: {
+        text: "text-gray-900",
+        bg: "bg-yellow-300",
+    },
+    [PokemonTypeNames.Ice]: {
+        text: "text-gray-900",
+        bg: "bg-cyan-100",
+    },
+    [PokemonTypeNames.Fighting]: {
+        text: "text-gray-900",
+        bg: "bg-deep-orange-100-accent",
+    },
+    [PokemonTypeNames.Poison]: {
+        text: "text-gray-100",
+        bg: "bg-purple-400",
+    },
+    [PokemonTypeNames.Ground]: {
+        text: "text-gray-900",
+        bg: "bg-brown-300",
+    },
+    [PokemonTypeNames.Flying]: {
+        text: "text-gray-900",
+        bg: "bg-cyan-300",
+    },
+    [PokemonTypeNames.Psychic]: {
+        text: "text-gray-900",
+        bg: "bg-purple-100",
+    },
+    [PokemonTypeNames.Bug]: {
+        text: "text-gray-900",
+        bg: "bg-lime-300",
+    },
+    [PokemonTypeNames.Rock]: {
+        text: "text-gray-100",
+        bg: "bg-brown-400",
+    },
+    [PokemonTypeNames.Ghost]: {
+        text: "text-gray-900",
+        bg: "bg-blue-grey-200",
+    },
+    [PokemonTypeNames.Dark]: {
+        text: "text-gray-100",
+        bg: "bg-grey-600",
+    },
+    [PokemonTypeNames.Dragon]: {
+        text: "text-gray-900",
+        bg: "bg-amber-200",
+    },
+    [PokemonTypeNames.Steel]: {
+        text: "text-gray-900",
+        bg: "bg-blue-grey-300",
+    },
+    [PokemonTypeNames.Fairy]: {
+        text: "text-gray-900",
+        bg: "bg-pink-300",
+    },
 });

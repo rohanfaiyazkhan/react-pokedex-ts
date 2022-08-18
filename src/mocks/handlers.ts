@@ -2,7 +2,7 @@ import { rest } from "msw";
 import {
     getSinglePokemonApiRoute,
     getPokemonListApiRoute,
-} from "../contexts/NetworkCacheLayer/getApiRoute";
+} from "../utils/requests/getApiRoute";
 import { ValidResourceNames } from "../contexts/NetworkCacheLayer/ValidResourceNames";
 import { mockPokemonResponse } from "./pokemon.mock";
 import { mockSpeciesResponse } from "./species.mock";
