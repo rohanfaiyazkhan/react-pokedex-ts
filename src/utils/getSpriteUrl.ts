@@ -1,5 +1,5 @@
 export interface IISpriteUrlConfig {
-    frontOrBack?: "front" | "back"; // defaults to front
+    facing?: "front" | "back"; // defaults to front
     shiny?: boolean; // defaults to false
 }
 
@@ -8,10 +8,10 @@ export function getSpriteUrl(id: number, config?: IISpriteUrlConfig) {
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon"
     );
     const resultArray: string[] = [];
-    const frontOrBack = config?.frontOrBack ?? "front";
+    const facing = config?.facing ?? "front";
 
-    if (frontOrBack === "back") {
-        resultArray.push(frontOrBack);
+    if (facing === "back") {
+        resultArray.push(facing);
     }
 
     resultArray.push(id.toString() + ".png");

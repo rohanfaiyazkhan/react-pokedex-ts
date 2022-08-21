@@ -37,15 +37,10 @@ const ListView: React.FC<IListViewProps> = (props) => {
 
     const [listResource] = useListPokemonAPI({
         limit,
-        offset: (page - 1) * limit,
+        offset: page * limit,
     });
 
-    const start = page * limit;
-    const end = (page + 1) * limit;
-
-    const rangeIter = makeRangeIterator(start, end);
-
-    console.debug(listResource);
+    const startIndex = page * limit + 1;
 
     const isEmpty = !listResource?.data;
     const isLoading = listResource?.loadingState === LoadingStates.Loading;
@@ -60,9 +55,9 @@ const ListView: React.FC<IListViewProps> = (props) => {
 
     return (
         <Fragment>
-            <div className="flex flex-col md:grid md:grid-cols-4 md:gap-2 lg:gap-6 lg:grid-cols-8">
-                {listResource.data?.results?.map((data) => {
-                    const pokemonId = rangeIter.next().value;
+            <div className="flex flex-col md:grid md:grid-cols-4 md:gap-2 lg:gap-4">
+                {listResource.data?.results?.map((data, idx) => {
+                    const pokemonId = startIndex + idx;
 
                     return (
                         <ListCard

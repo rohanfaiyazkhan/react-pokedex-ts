@@ -10,18 +10,20 @@ interface ISpriteCentrePieceProps extends IStyleableProps {
     pokemonId: number;
     types?: IPokemonType[];
     showSwitch?: boolean;
+    pokemonName?: string;
 }
 
 const SpriteCentrePiece: React.FC<ISpriteCentrePieceProps> = ({
     pokemonId,
     className,
     style,
+    pokemonName,
     types = [],
     showSwitch = false,
 }) => {
     const [spriteFacing, setSpriteFacing] = useState<"front" | "back">("front");
     const spriteUrl = getSpriteUrl(pokemonId, {
-        frontOrBack: spriteFacing,
+        facing: spriteFacing,
         shiny: false,
     });
 
@@ -31,7 +33,7 @@ const SpriteCentrePiece: React.FC<ISpriteCentrePieceProps> = ({
 
     let rootClassName = combineClassnames(
         className,
-        "relative rounded-full bg-red-100 border-2 border-red-400 shadow-inner"
+        "relative rounded-full bg-red-50 border-2 border-red-900 shadow-inner"
     );
 
     if (types.length > 0) {
@@ -41,11 +43,15 @@ const SpriteCentrePiece: React.FC<ISpriteCentrePieceProps> = ({
     }
 
     return (
-        <div className={rootClassName}>
+        <div className={rootClassName} style={style}>
             <img
                 className="w-full h-full object-cover"
+                style={{
+                    minWidth: 80,
+                    minHeight: 80,
+                }}
                 src={spriteUrl.toString()}
-                alt="Sprite of pokemon"
+                alt={"Sprite of pokemon " + pokemonName}
             />
             {showSwitch && (
                 <button
