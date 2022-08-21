@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SwitchIcon } from "../../assets/components";
+import { SwitchIcon } from "../../assets/svg-components";
 import { IPokemonType } from "../../data/PokemonTypes";
 import { IStyleableProps } from "../../utils/classnamesUtils";
 import { getSpriteUrl } from "../../utils/getSpriteUrl";

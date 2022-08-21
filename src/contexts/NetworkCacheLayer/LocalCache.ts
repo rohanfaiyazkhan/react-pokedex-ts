@@ -1,10 +1,9 @@
 import localforage from "localforage";
 import getCurrentTimeStamp from "../../utils/getCurrentTimeStamp";
-import { ResourceContainer } from "../../data/ResourceContainer";
 export const LOCAL_STORAGE_NETWORK_CACHE_KEY = "networkCache";
 
 export class NetworkLocalCache {
-    cache: ResourceContainer | undefined = undefined;
+    cache: any | undefined = undefined;
     fetchedOn: number | undefined = undefined;
     savedOn: number | undefined = undefined;
 
@@ -25,9 +24,9 @@ export class NetworkLocalCache {
         }
     }
 
-    save(newState: ResourceContainer) {
+    save(newState: any) {
         try {
-            let stateToSet: ResourceContainer | undefined = newState;
+            let stateToSet: any | undefined = newState;
             if (!stateToSet) {
                 stateToSet = this.cache;
             }
@@ -43,9 +42,9 @@ export class NetworkLocalCache {
         }
     }
 
-    async asyncSave(newState: ResourceContainer) {
+    async asyncSave(newState: any) {
         try {
-            let stateToSet: ResourceContainer | undefined = newState;
+            let stateToSet: any | undefined = newState;
             if (!stateToSet) {
                 stateToSet = this.cache;
             }
@@ -78,7 +77,7 @@ export class NetworkLocalCache {
         }
     }
 
-    constructor(initialState: ResourceContainer) {
+    constructor(initialState: any) {
         if (!initialState) {
             this.load();
         } else {

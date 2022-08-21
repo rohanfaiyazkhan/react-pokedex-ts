@@ -10,7 +10,10 @@ import { mockListResponse } from "./listPokemon.mock";
 
 const pokemonRoute = getSinglePokemonApiRoute(ValidResourceNames.Pokemon);
 const speciesRoute = getSinglePokemonApiRoute(ValidResourceNames.Species);
-const listRoute = getPokemonListApiRoute(0, 100);
+const listRoute = getPokemonListApiRoute({
+    limit: 100,
+    offset: 0,
+});
 
 export const handlers = [
     rest.get(pokemonRoute.toString() + "/:id", (req, res, ctx) => {

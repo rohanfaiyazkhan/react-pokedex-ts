@@ -6,12 +6,12 @@ import {
     PokemonSpeciesInferredType,
 } from "./InferredTypes";
 
-export interface ResourceContent<R = any> {
+export interface ResourceContent<D = any> {
     loadingState?: LoadingStates;
     fetchedOn?: number;
     failedOn?: number;
     requestOn?: number;
-    resource?: R;
+    data?: D;
     error?: any;
 }
 
