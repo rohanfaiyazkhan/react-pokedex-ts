@@ -9,7 +9,10 @@ export function getSpriteUrl(id: number, config?: IISpriteUrlConfig) {
     );
     const resultArray: string[] = [];
     const frontOrBack = config?.frontOrBack ?? "front";
-    resultArray.push(frontOrBack);
+
+    if (frontOrBack === "back") {
+        resultArray.push(frontOrBack);
+    }
 
     resultArray.push(id.toString() + ".png");
     baseUrl.pathname = baseUrl.pathname + "/" + resultArray.join("/");

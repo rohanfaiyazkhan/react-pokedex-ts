@@ -4,7 +4,7 @@ import {
 } from "../../data/InferredTypes";
 import { PaginationInfo } from "../../data/ResourceContainer";
 import { ValidResourceNames } from "./ValidResourceNames";
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 /**
  * All the methods for dealing with cache state data are described here
@@ -43,3 +43,7 @@ const emptyInitializer: NetworkCacheStateHandlers = {
 
 export const NetworkCacheStateHandlerContext =
     createContext<NetworkCacheStateHandlers>(emptyInitializer);
+
+export function useCacheStateHandlerContext() {
+    return useContext(NetworkCacheStateHandlerContext);
+}

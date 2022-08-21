@@ -12,11 +12,12 @@ const ListCard: React.FC<IListCardProps> = ({ pokemonId, name }) => {
             <div
                 aria-hidden
                 style={{ content: " " }}
-                className="h-1/2 w-full bottom-0 left-0 bg-red-100"
+                className="absolute z-0 h-1/2 w-full bottom-0 left-0 bg-red-100 rounded-b-lg"
             />
             <SpriteCentrePiece pokemonId={pokemonId} />
-            <p>
-                {pokemonId}. {name}
+            <p className="z-10 flex items-center justify-start">
+                <span className="mr-2 text-sm">{pokemonId}.</span>
+                <span className="uppercase text-lg">{name}</span>
             </p>
         </div>
     );

@@ -1,7 +1,4 @@
-import {
-    BASE_API_URL,
-    NumberOfItemsPerPage,
-} from "../../contexts/NetworkCacheLayer/NetworkConfig";
+import { BASE_API_URL } from "../../contexts/NetworkCacheLayer/NetworkConfig";
 import { ValidResourceNames } from "../../contexts/NetworkCacheLayer/ValidResourceNames";
 import { PaginationInfo } from "../../data/ResourceContainer";
 

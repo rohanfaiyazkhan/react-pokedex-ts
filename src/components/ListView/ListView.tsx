@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PokeballIcon from "../../assets/svg-components/PokeballIcon";
 import { LoadingStates } from "../../data/LoadingStates";
 import { useListPaginationState } from "../../utils/hooks/usePaginationState";
@@ -11,19 +11,19 @@ import ListCard from "./ListCard";
 interface IListViewProps {}
 
 const LoadingView = () => (
-    <div className="flex items-center justify-center">
-        <p>
-            <LoadingSpinner className="mr-2" />
+    <div className="h-full w-full flex items-center justify-center">
+        <p className="flex items-center justify-center">
+            <LoadingSpinner className="mr-2 w-6 h-6" />
             Loading Pokemon
         </p>
     </div>
 );
 
 const EmptyView = () => (
-    <div className="flex items-center justify-center">
-        <p>
+    <div className="h-full w-full flex items-center justify-center">
+        <p className="flex items-center justify-center">
             <span className="mr-2">
-                <PokeballIcon className="w-4 h-4" />
+                <PokeballIcon className="w-6 h-6" />
             </span>
             Unable to load list of Pokemon
         </p>
@@ -31,17 +31,21 @@ const EmptyView = () => (
 );
 
 const ListView: React.FC<IListViewProps> = (props) => {
-    const { page, limit } = useListPaginationState();
+    // const { page, limit } = useListPaginationState();
+    const page = 3;
+    const limit = 50;
 
     const [listResource] = useListPokemonAPI({
         limit,
-        offset: page * limit,
+        offset: (page - 1) * limit,
     });
 
-    const start = (page - 1) * limit;
-    const end = page * limit;
+    const start = page * limit;
+    const end = (page + 1) * limit;
 
     const rangeIter = makeRangeIterator(start, end);
+
+    console.debug(listResource);
 
     const isEmpty = !listResource?.data;
     const isLoading = listResource?.loadingState === LoadingStates.Loading;
@@ -55,20 +59,34 @@ const ListView: React.FC<IListViewProps> = (props) => {
     }
 
     return (
-        <div className="flex flex-col md:grid md:grid-cols">
-            {listResource.data?.results?.map((data) => {
-                const pokemonId = rangeIter.next().value;
+        <Fragment>
+            <div className="flex flex-col md:grid md:grid-cols-4 md:gap-2 lg:gap-6 lg:grid-cols-8">
+                {listResource.data?.results?.map((data) => {
+                    const pokemonId = rangeIter.next().value;
 
-                return (
-                    <ListCard
-                        pokemonId={pokemonId}
-                        name={data.name}
-                        key={"pokemon-list-view-" + pokemonId}
-                    />
-                );
-            })}
-        </div>
+                    return (
+                        <ListCard
+                            pokemonId={pokemonId}
+                            name={data.name}
+                            key={"pokemon-list-view-" + pokemonId}
+                        />
+                    );
+                })}
+            </div>
+        </Fragment>
     );
 };
 
-export default ListView;
+const ListViewWrapper: React.FC = () => {
+    return (
+        <Fragment>
+            <h1 className="text-center text-2xl font-bold">PokeDex App!</h1>
+            <p className="text-lg text-center mb-4">
+                View every single Pokemon!
+            </p>
+            <ListView />
+        </Fragment>
+    );
+};
+
+export default ListViewWrapper;

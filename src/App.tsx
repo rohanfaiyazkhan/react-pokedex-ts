@@ -5,7 +5,9 @@ import AppRouter from "./router/Router";
 const App: React.FC = () => {
     return (
         <ContextWrappers>
-            <AppRouter />
+            <main className="w-full h-full mx-auto min-h-screen lg:max-w-screen-lg xl:max-w-screen-2xl  px-4 md:px-8 py-4">
+                <AppRouter />
+            </main>
         </ContextWrappers>
     );
 };

@@ -9,6 +9,7 @@ import { TypeAppropriateColorClassNames } from "./TypeAppropriateBackgroundColor
 interface ISpriteCentrePieceProps extends IStyleableProps {
     pokemonId: number;
     types?: IPokemonType[];
+    showSwitch?: boolean;
 }
 
 const SpriteCentrePiece: React.FC<ISpriteCentrePieceProps> = ({
@@ -16,6 +17,7 @@ const SpriteCentrePiece: React.FC<ISpriteCentrePieceProps> = ({
     className,
     style,
     types = [],
+    showSwitch = false,
 }) => {
     const [spriteFacing, setSpriteFacing] = useState<"front" | "back">("front");
     const spriteUrl = getSpriteUrl(pokemonId, {
@@ -45,12 +47,14 @@ const SpriteCentrePiece: React.FC<ISpriteCentrePieceProps> = ({
                 src={spriteUrl.toString()}
                 alt="Sprite of pokemon"
             />
-            <button
-                onClick={toggleSprite}
-                className="absolute -right-4 -bottom-4 rounded-full p-4 bg-red-300 border border-red-500"
-            >
-                <SwitchIcon />
-            </button>
+            {showSwitch && (
+                <button
+                    onClick={toggleSprite}
+                    className="absolute w-1/12 h-1/12 -right-6 -bottom-6 rounded-full p-4 bg-red-300 border border-red-900"
+                >
+                    <SwitchIcon className="w-full h-full" />
+                </button>
+            )}
         </div>
     );
 };

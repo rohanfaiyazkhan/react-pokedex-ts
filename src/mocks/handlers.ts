@@ -11,7 +11,7 @@ import { mockListResponse } from "./listPokemon.mock";
 const pokemonRoute = getSinglePokemonApiRoute(ValidResourceNames.Pokemon);
 const speciesRoute = getSinglePokemonApiRoute(ValidResourceNames.Species);
 const listRoute = getPokemonListApiRoute({
-    limit: 100,
+    limit: 50,
     offset: 0,
 });
 
@@ -23,6 +23,6 @@ export const handlers = [
         return res(ctx.json(mockSpeciesResponse));
     }),
     rest.get(listRoute.toString(), (req, res, ctx) => {
-        return res(ctx.json(mockListResponse));
+        return res(ctx.delay(2000), ctx.json(mockListResponse));
     }),
 ];

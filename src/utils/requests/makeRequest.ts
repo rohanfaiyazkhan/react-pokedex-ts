@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ValidResourceNames } from "../../contexts/NetworkCacheLayer/ValidResourceNames";
+import { PokemonListInferredType } from "../../data/InferredTypes";
 import { PaginationInfo } from "../../data/ResourceContainer";
 import {
     getPokemonListApiRoute,
@@ -18,5 +19,5 @@ export function makeSinglePokemonRequest(
 export function makeListPokemonRequest(pagination: PaginationInfo) {
     const listUrl = getPokemonListApiRoute(pagination);
 
-    return axios.get(listUrl.toString());
+    return axios.get<PokemonListInferredType>(listUrl.toString());
 }

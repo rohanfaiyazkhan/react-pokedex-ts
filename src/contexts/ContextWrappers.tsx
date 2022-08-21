@@ -1,4 +1,4 @@
-import { useNetworkCacheState } from "./NetworkCacheLayer/useNetworkCacheState";
+import { useCacheStateHandlers } from "./NetworkCacheLayer/useCacheStateHandlers";
 import {
     IndividualNetworkCacheContext,
     ListResourceCacheContext,
@@ -9,7 +9,7 @@ const NetworkCacheContextWrapper: React.FC<React.PropsWithChildren> = (
     props
 ) => {
     const { individualPokemonState, listPokemonState, stateHandlers } =
-        useNetworkCacheState();
+        useCacheStateHandlers();
 
     return (
         <IndividualNetworkCacheContext.Provider value={individualPokemonState}>
