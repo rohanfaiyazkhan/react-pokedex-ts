@@ -1,14 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SpriteCentrePiece from "./../SpriteCenterPiece/SpriteCentrePiece";
+import { generatePath } from "react-router";
+import { combineClassnames } from "./../../utils/classnamesUtils";
 
 interface IListCardProps {
     pokemonId: number;
     name: string;
 }
 
+function getIndividualCardUrl(id: number) {
+    return generatePath("/view/:id", { id: id.toString() });
+}
+
 const ListCard: React.FC<IListCardProps> = ({ pokemonId, name }) => {
+    const baseClassNames =
+        "relative px-8 py-3 bg-red-100 border border-gray-500 rounded flex flex-col items-center shadow-lg scale-100";
+    const transitionClassNames =
+        "transition-transform hover:scale-110 focus:ring-red-300";
+    const rootClassNames = combineClassnames(
+        baseClassNames,
+        transitionClassNames
+    );
+
     return (
-        <div className="relative px-8 py-3 bg-red-100 border border-gray-500 rounded flex flex-col items-center shadow-lg">
+        <Link to={getIndividualCardUrl(pokemonId)} className={rootClassNames}>
             <div
                 aria-hidden
                 style={{ content: " " }}
@@ -19,7 +35,7 @@ const ListCard: React.FC<IListCardProps> = ({ pokemonId, name }) => {
                 <span className="mr-2 text-sm">{pokemonId}.</span>
                 <span className="uppercase text-lg">{name}</span>
             </p>
-        </div>
+        </Link>
     );
 };
 

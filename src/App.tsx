@@ -1,6 +1,6 @@
 import React from "react";
 import ContextWrappers from "./contexts/ContextWrappers";
-import AppRouter from "./router/Router";
+import AppRouter from "./router/Routes";
 
 const App: React.FC = () => {
     return (

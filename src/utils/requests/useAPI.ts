@@ -4,10 +4,7 @@ import {
     useListResourceCache,
 } from "../../contexts/NetworkCacheLayer/NetworkCacheContext";
 import { useCallback, useRef } from "react";
-import {
-    makeListPokemonRequest,
-    makeSinglePokemonRequest,
-} from "./makeRequest";
+import { makeListPokemonRequest, makePokemonRequest } from "./makeRequest";
 import { useEffect } from "react";
 import { LoadingStates } from "../../data/LoadingStates";
 import { isDataStale } from "./isDataStale";
@@ -19,33 +16,161 @@ import {
 import { PokemonInferredType } from "../../data/InferredTypes";
 import { useCacheStateHandlerContext } from "../../contexts/NetworkCacheLayer/NetworkCacheStateHandlers";
 
-export function useSingePokemonAPI(
-    resourceType: ValidResourceNames,
-    target: number
-): ResourceContent<PokemonInferredType> {
-    const resource = useIndividualResourceCache(resourceType, target);
+const POKEMON = ValidResourceNames.Pokemon;
+const SPECIES = ValidResourceNames.Species;
 
-    const request = useCallback(() => {
-        makeSinglePokemonRequest(resourceType, target);
-    }, [resourceType, target]);
+export function useIndividualPokemonAPI(
+    target: number
+): [ResourceContent<PokemonInferredType>, (target: number) => void] {
+    const resource = useIndividualResourceCache(POKEMON, target);
+    const {
+        individualPokemonInfoRequestMade,
+        individualPokemonInfoRequestSucceeded,
+        individualPokemonInfoRequestFailed,
+    } = useCacheStateHandlerContext();
+
+    const request = useCallback(
+        (target: number) => {
+            const promise = makePokemonRequest(target);
+            individualPokemonInfoRequestMade(POKEMON, target);
+
+            promise
+                .then((response) => {
+                    individualPokemonInfoRequestSucceeded(
+                        POKEMON,
+                        target,
+                        response.data
+                    );
+                })
+                .catch((err) => {
+                    if (err.response) {
+                        individualPokemonInfoRequestFailed(
+                            POKEMON,
+                            target,
+                            err.response
+                        );
+                    } else if (err.request) {
+                        individualPokemonInfoRequestFailed(POKEMON, target, {
+                            message: "Empty response recieved from API",
+                        });
+                    } else {
+                        individualPokemonInfoRequestFailed(POKEMON, target, {
+                            message: err.message,
+                        });
+                    }
+                });
+        },
+        [
+            individualPokemonInfoRequestFailed,
+            individualPokemonInfoRequestMade,
+            individualPokemonInfoRequestSucceeded,
+        ]
+    );
 
     const loadingState = resource.loadingState;
     const isResourceEmpty = !resource.data;
     const fetchedOn = resource.fetchedOn;
 
+    const attemptRef = useRef(0);
+    const isFirstRequest = attemptRef.current === 0;
+
     useEffect(() => {
-        if (isResourceEmpty && loadingState !== LoadingStates.Loading) {
-            request();
+        if (isResourceEmpty && isFirstRequest) {
+            request(target);
         } else if (
             fetchedOn !== undefined &&
             isDataStale(fetchedOn) &&
             loadingState !== LoadingStates.Loading
         ) {
-            request();
+            request(target);
         }
-    }, [fetchedOn, isResourceEmpty, loadingState, request]);
+    }, [
+        fetchedOn,
+        isFirstRequest,
+        isResourceEmpty,
+        loadingState,
+        request,
+        target,
+    ]);
 
-    return resource;
+    return [resource, request];
+}
+
+export function useIndividualPokemonSpeciesAPI(
+    target: number
+): [ResourceContent<PokemonInferredType>, (target: number) => void] {
+    const resource = useIndividualResourceCache(SPECIES, target);
+    const {
+        individualPokemonInfoRequestMade,
+        individualPokemonInfoRequestSucceeded,
+        individualPokemonInfoRequestFailed,
+    } = useCacheStateHandlerContext();
+
+    const request = useCallback(
+        (target: number) => {
+            const promise = makePokemonRequest(target);
+            individualPokemonInfoRequestMade(SPECIES, target);
+
+            promise
+                .then((response) => {
+                    individualPokemonInfoRequestSucceeded(
+                        SPECIES,
+                        target,
+                        response.data
+                    );
+                })
+                .catch((err) => {
+                    if (err.response) {
+                        individualPokemonInfoRequestFailed(
+                            SPECIES,
+                            target,
+                            err.response
+                        );
+                    } else if (err.request) {
+                        individualPokemonInfoRequestFailed(SPECIES, target, {
+                            message: "Empty response recieved from API",
+                        });
+                    } else {
+                        individualPokemonInfoRequestFailed(SPECIES, target, {
+                            message: err.message,
+                        });
+                    }
+                });
+        },
+        [
+            individualPokemonInfoRequestFailed,
+            individualPokemonInfoRequestMade,
+            individualPokemonInfoRequestSucceeded,
+        ]
+    );
+
+    const loadingState = resource.loadingState;
+    const isResourceEmpty = !resource.data;
+    const fetchedOn = resource.fetchedOn;
+
+    const attemptRef = useRef(0);
+    const isFirstRequest = attemptRef.current === 0;
+
+    useEffect(() => {
+        if (isResourceEmpty && isFirstRequest) {
+            request(target);
+        } else if (
+            fetchedOn !== undefined &&
+            isDataStale(fetchedOn) &&
+            loadingState !== LoadingStates.Loading
+        ) {
+            request(target);
+        }
+    }, [
+        fetchedOn,
+        isFirstRequest,
+        isResourceEmpty,
+        loadingState,
+        request,
+        target,
+    ]);
+
+    return [resource, request];
 }
 
 export function useListPokemonAPI(
@@ -72,7 +197,6 @@ export function useListPokemonAPI(
 
             promise
                 .then((response) => {
-                    console.debug(`[requestPipeline]: `, response);
                     listPokemonRequestSuccess(paginationInfo, response.data);
                 })
                 .catch((error) => {
