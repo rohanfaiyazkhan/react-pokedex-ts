@@ -74,3 +74,13 @@ export const TypeAppropriateColorClassNames = Object.freeze({
         bg: "bg-pink-300",
     },
 });
+
+export function getTypeAppropriateClassName(typeName?: string) {
+    if (
+        typeName === undefined ||
+        !Object.values(PokemonTypeNames).includes(typeName as PokemonTypeNames)
+    )
+        return undefined;
+
+    return TypeAppropriateColorClassNames[typeName as PokemonTypeNames];
+}

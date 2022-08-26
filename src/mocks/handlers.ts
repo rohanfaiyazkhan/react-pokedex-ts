@@ -17,10 +17,10 @@ const listRoute = getPokemonListApiRoute({
 
 export const handlers = [
     rest.get(pokemonRoute.toString() + "/:id", (req, res, ctx) => {
-        return res(ctx.json(mockPokemonResponse));
+        return res(ctx.delay(2000), ctx.json(mockPokemonResponse));
     }),
     rest.get(speciesRoute.toString() + "/:id", (req, res, ctx) => {
-        return res(ctx.json(mockSpeciesResponse));
+        return res(ctx.delay(2000), ctx.json(mockSpeciesResponse));
     }),
     rest.get(listRoute.toString(), (req, res, ctx) => {
         return res(ctx.delay(2000), ctx.json(mockListResponse));

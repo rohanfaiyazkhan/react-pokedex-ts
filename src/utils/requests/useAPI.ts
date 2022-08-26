@@ -67,9 +67,9 @@ export function useIndividualPokemonAPI(
         ]
     );
 
-    const loadingState = resource.loadingState;
-    const isResourceEmpty = !resource.data;
-    const fetchedOn = resource.fetchedOn;
+    const loadingState = resource?.loadingState;
+    const isResourceEmpty = !resource?.data;
+    const fetchedOn = resource?.fetchedOn;
 
     const attemptRef = useRef(0);
     const isFirstRequest = attemptRef.current === 0;
@@ -144,9 +144,9 @@ export function useIndividualPokemonSpeciesAPI(
         ]
     );
 
-    const loadingState = resource.loadingState;
-    const isResourceEmpty = !resource.data;
-    const fetchedOn = resource.fetchedOn;
+    const loadingState = resource?.loadingState;
+    const isResourceEmpty = !resource?.data;
+    const fetchedOn = resource?.fetchedOn;
 
     const attemptRef = useRef(0);
     const isFirstRequest = attemptRef.current === 0;

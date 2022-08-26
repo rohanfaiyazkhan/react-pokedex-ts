@@ -73,15 +73,7 @@ const ListView: React.FC<IListViewProps> = (props) => {
 };
 
 const ListViewWrapper: React.FC = () => {
-    return (
-        <Fragment>
-            <h1 className="text-center text-2xl font-bold">PokeDex App!</h1>
-            <p className="text-lg text-center mb-4">
-                View every single Pokemon!
-            </p>
-            <ListView />
-        </Fragment>
-    );
+    return <ListView />;
 };
 
 export default ListViewWrapper;
