@@ -15,7 +15,7 @@ export const TypeAppropriateColorClassNames = Object.freeze({
     },
     [PokemonTypeNames.Grass]: {
         text: "text-green-900",
-        bg: "bg-light-green-400",
+        bg: "bg-light-green-100",
     },
     [PokemonTypeNames.Electric]: {
         text: "text-gray-900",

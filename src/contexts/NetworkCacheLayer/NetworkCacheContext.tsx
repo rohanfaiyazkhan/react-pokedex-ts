@@ -19,9 +19,7 @@ export function useIndividualResourceCache(
     target: number
 ) {
     const contextValue = useContext(IndividualNetworkCacheContext);
-    return contextValue?.[target]?.[
-        resourceType
-    ] as ResourceContent<PokemonInferredType>;
+    return contextValue?.[target]?.[resourceType];
 }
 
 export function useListResourceCache(): ListResourceContainer {

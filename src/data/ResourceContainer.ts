@@ -1,5 +1,6 @@
 import { LoadingStates } from "./LoadingStates";
 import { ValidResourceNames } from "../contexts/NetworkCacheLayer/ValidResourceNames";
+import { IEvolutionChainResponse } from "./EvolutionChain";
 import {
     PokemonInferredType,
     PokemonListInferredType,
@@ -29,5 +30,6 @@ export interface IndividualResourceContainer {
     [id: number]: {
         [ValidResourceNames.Pokemon]: ResourceContent<PokemonInferredType>;
         [ValidResourceNames.Species]: ResourceContent<PokemonSpeciesInferredType>;
+        [ValidResourceNames.EvolutionChain]: ResourceContent<IEvolutionChainResponse>;
     };
 }

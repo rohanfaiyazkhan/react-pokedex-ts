@@ -5,6 +5,7 @@ import {
 import { PaginationInfo } from "../../data/ResourceContainer";
 import { ValidResourceNames } from "./ValidResourceNames";
 import { createContext, useContext } from "react";
+import { IEvolutionChainResponse } from "./../../data/EvolutionChain";
 
 /**
  * All the methods for dealing with cache state data are described here
@@ -17,7 +18,7 @@ export type NetworkCacheStateHandlers = {
     individualPokemonInfoRequestSucceeded: (
         resourceType: ValidResourceNames,
         target: number,
-        results: PokemonInferredType | PokemonListInferredType
+        results: any
     ) => void;
     individualPokemonInfoRequestFailed: (
         resourceType: ValidResourceNames,

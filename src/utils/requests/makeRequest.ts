@@ -6,6 +6,7 @@ import {
     PokemonSpeciesInferredType,
 } from "../../data/InferredTypes";
 import { PaginationInfo } from "../../data/ResourceContainer";
+import { IEvolutionChainResponse } from "./../../data/EvolutionChain";
 import {
     getPokemonListApiRoute,
     getSinglePokemonApiRoute,
@@ -21,6 +22,15 @@ export function makePokemonSpeciesRequest(target: number) {
     const apiUrl = getSinglePokemonApiRoute(ValidResourceNames.Species, target);
 
     return axios.get<PokemonSpeciesInferredType>(apiUrl.toString());
+}
+
+export function makeEvolutionChainRequest(target: number) {
+    const apiUrl = getSinglePokemonApiRoute(
+        ValidResourceNames.EvolutionChain,
+        target
+    );
+
+    return axios.get<IEvolutionChainResponse>(apiUrl.toString());
 }
 
 export function makeListPokemonRequest(pagination: PaginationInfo) {

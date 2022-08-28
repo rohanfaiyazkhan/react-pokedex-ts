@@ -23,15 +23,14 @@ const IndividualViewSpriteDisplay: React.FC<
         shiny: false,
     });
 
-    const baseClassNames =
-        "relative px-4 py-2 flex flex-col md:flex-row items-center";
+    const baseClassNames = "relative flex flex-col md:flex-row items-center";
 
     const rootClassNames = combineClassnames(baseClassNames, className);
 
     return (
         <div className={rootClassNames} style={style}>
             <img
-                className="object-cover m-4 h-full w-1/2"
+                className="object-cover h-full w-1/2"
                 src={frontSpriteUrl.toString()}
                 alt={
                     "Front sprite of pokemon " +

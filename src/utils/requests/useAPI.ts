@@ -4,7 +4,12 @@ import {
     useListResourceCache,
 } from "../../contexts/NetworkCacheLayer/NetworkCacheContext";
 import { useCallback, useRef } from "react";
-import { makeListPokemonRequest, makePokemonRequest } from "./makeRequest";
+import {
+    makeListPokemonRequest,
+    makePokemonRequest,
+    makePokemonSpeciesRequest,
+    makeEvolutionChainRequest,
+} from "./makeRequest";
 import { useEffect } from "react";
 import { LoadingStates } from "../../data/LoadingStates";
 import { isDataStale } from "./isDataStale";
@@ -13,16 +18,26 @@ import {
     PaginationInfo,
     ResourceContent,
 } from "../../data/ResourceContainer";
-import { PokemonInferredType } from "../../data/InferredTypes";
+import {
+    PokemonInferredType,
+    PokemonSpeciesInferredType,
+} from "../../data/InferredTypes";
 import { useCacheStateHandlerContext } from "../../contexts/NetworkCacheLayer/NetworkCacheStateHandlers";
+import { IEvolutionChainResponse } from "./../../data/EvolutionChain";
+import { AxiosResponse } from "axios";
 
 const POKEMON = ValidResourceNames.Pokemon;
 const SPECIES = ValidResourceNames.Species;
+const EVOLUTION_CHAIN = ValidResourceNames.EvolutionChain;
 
-export function useIndividualPokemonAPI(
-    target: number
-): [ResourceContent<PokemonInferredType>, (target: number) => void] {
-    const resource = useIndividualResourceCache(POKEMON, target);
+export function useIndividualResourceAPI<T>(
+    target: number,
+    resourceType: ValidResourceNames
+): [ResourceContent<T>, (target: number) => void] {
+    const resource = useIndividualResourceCache(
+        resourceType,
+        target
+    ) as unknown as ResourceContent<T>;
     const {
         individualPokemonInfoRequestMade,
         individualPokemonInfoRequestSucceeded,
@@ -31,13 +46,27 @@ export function useIndividualPokemonAPI(
 
     const request = useCallback(
         (target: number) => {
-            const promise = makePokemonRequest(target);
-            individualPokemonInfoRequestMade(POKEMON, target);
+            let promise: Promise<
+                AxiosResponse<
+                    | PokemonInferredType
+                    | PokemonSpeciesInferredType
+                    | IEvolutionChainResponse
+                >
+            >;
+
+            if (resourceType === POKEMON) {
+                promise = makePokemonRequest(target);
+            } else if (resourceType === SPECIES) {
+                promise = makePokemonSpeciesRequest(target);
+            } else {
+                promise = makeEvolutionChainRequest(target);
+            }
+            individualPokemonInfoRequestMade(resourceType, target);
 
             promise
                 .then((response) => {
                     individualPokemonInfoRequestSucceeded(
-                        POKEMON,
+                        resourceType,
                         target,
                         response.data
                     );
@@ -45,18 +74,26 @@ export function useIndividualPokemonAPI(
                 .catch((err) => {
                     if (err.response) {
                         individualPokemonInfoRequestFailed(
-                            POKEMON,
+                            resourceType,
                             target,
                             err.response
                         );
                     } else if (err.request) {
-                        individualPokemonInfoRequestFailed(POKEMON, target, {
-                            message: "Empty response recieved from API",
-                        });
+                        individualPokemonInfoRequestFailed(
+                            resourceType,
+                            target,
+                            {
+                                message: "Empty response recieved from API",
+                            }
+                        );
                     } else {
-                        individualPokemonInfoRequestFailed(POKEMON, target, {
-                            message: err.message,
-                        });
+                        individualPokemonInfoRequestFailed(
+                            resourceType,
+                            target,
+                            {
+                                message: err.message,
+                            }
+                        );
                     }
                 });
         },
@@ -64,6 +101,7 @@ export function useIndividualPokemonAPI(
             individualPokemonInfoRequestFailed,
             individualPokemonInfoRequestMade,
             individualPokemonInfoRequestSucceeded,
+            resourceType,
         ]
     );
 
@@ -96,81 +134,22 @@ export function useIndividualPokemonAPI(
     return [resource, request];
 }
 
-export function useIndividualPokemonSpeciesAPI(
-    target: number
-): [ResourceContent<PokemonInferredType>, (target: number) => void] {
-    const resource = useIndividualResourceCache(SPECIES, target);
-    const {
-        individualPokemonInfoRequestMade,
-        individualPokemonInfoRequestSucceeded,
-        individualPokemonInfoRequestFailed,
-    } = useCacheStateHandlerContext();
+export function useIndividualPokemonAPI(target: number) {
+    return useIndividualResourceAPI<PokemonInferredType>(target, POKEMON);
+}
 
-    const request = useCallback(
-        (target: number) => {
-            const promise = makePokemonRequest(target);
-            individualPokemonInfoRequestMade(SPECIES, target);
-
-            promise
-                .then((response) => {
-                    individualPokemonInfoRequestSucceeded(
-                        SPECIES,
-                        target,
-                        response.data
-                    );
-                })
-                .catch((err) => {
-                    if (err.response) {
-                        individualPokemonInfoRequestFailed(
-                            SPECIES,
-                            target,
-                            err.response
-                        );
-                    } else if (err.request) {
-                        individualPokemonInfoRequestFailed(SPECIES, target, {
-                            message: "Empty response recieved from API",
-                        });
-                    } else {
-                        individualPokemonInfoRequestFailed(SPECIES, target, {
-                            message: err.message,
-                        });
-                    }
-                });
-        },
-        [
-            individualPokemonInfoRequestFailed,
-            individualPokemonInfoRequestMade,
-            individualPokemonInfoRequestSucceeded,
-        ]
-    );
-
-    const loadingState = resource?.loadingState;
-    const isResourceEmpty = !resource?.data;
-    const fetchedOn = resource?.fetchedOn;
-
-    const attemptRef = useRef(0);
-    const isFirstRequest = attemptRef.current === 0;
-
-    useEffect(() => {
-        if (isResourceEmpty && isFirstRequest) {
-            request(target);
-        } else if (
-            fetchedOn !== undefined &&
-            isDataStale(fetchedOn) &&
-            loadingState !== LoadingStates.Loading
-        ) {
-            request(target);
-        }
-    }, [
-        fetchedOn,
-        isFirstRequest,
-        isResourceEmpty,
-        loadingState,
-        request,
+export function useIndividualPokemonSpeciesAPI(target: number) {
+    return useIndividualResourceAPI<PokemonSpeciesInferredType>(
         target,
-    ]);
+        SPECIES
+    );
+}
 
-    return [resource, request];
+export function useEvolutionContextApi(target: number) {
+    return useIndividualResourceAPI<IEvolutionChainResponse>(
+        target,
+        EVOLUTION_CHAIN
+    );
 }
 
 export function useListPokemonAPI(

@@ -10,10 +10,22 @@ import { useListResourceCache } from "../../contexts/NetworkCacheLayer/NetworkCa
 import { LoadingStates } from "../../data/LoadingStates";
 import IndividualViewSpriteDisplay from "./IndividualViewSpriteDisplay";
 import { combineClassnames } from "./../../utils/classnamesUtils";
-import {
-    getTypeAppropriateClassName,
-    TypeAppropriateColorClassNames,
-} from "./../SpriteCenterPiece/TypeAppropriateBackgroundColors";
+import { getTypeAppropriateClassName } from "./../SpriteCenterPiece/TypeAppropriateBackgroundColors";
+import PokemonTypes from "./PokemonTypes";
+import Abilities from "./Abilities";
+
+/**
+ * Returns string representation of number with zeroes added at the beginning to ensure atleast three digits
+ */
+function padToThreeDigits(input: number) {
+    let stringInput = input.toString();
+
+    while (stringInput.length < 3) {
+        stringInput = "0" + stringInput;
+    }
+
+    return stringInput;
+}
 
 interface IIndividualProps {}
 
@@ -75,14 +87,14 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
 
     const primaryType = pokemonResource?.data?.types?.[0]?.type?.name;
     const spriteContainerClassNames = combineClassnames(
-        "bg-white border-2 border-gray-400 rounded shadow-lg col-span-2 col-start-1 px-4 py-2",
+        "border-2 border-gray-400 rounded shadow-lg col-span-2 col-start-1",
         getTypeAppropriateClassName(primaryType)?.bg
     );
 
     return (
-        <div className="flex flex-col md:grid md:grid-cols-4 mt-8">
-            <h1 className="text-lg mb-4">
-                {idNumber}.{" "}
+        <div className="flex flex-col md:grid md:grid-cols-4 md:gap-x-4 mt-8">
+            <h1 className="text-lg mb-4 col-span-4">
+                {padToThreeDigits(idNumber)}.{" "}
                 <span className="capitalize font-bold text-2xl">
                     {pokemonName}
                 </span>
@@ -93,6 +105,14 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
                     pokemonName={pokemonName}
                 />
             </div>
+            <PokemonTypes
+                className="col-span-1 col-start-3"
+                types={pokemonResource?.data?.types}
+            />
+            <Abilities
+                className="col-span-1 col-start-4"
+                abilities={pokemonResource?.data?.abilities}
+            />
         </div>
     );
 };
