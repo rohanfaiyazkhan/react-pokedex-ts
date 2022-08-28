@@ -14,6 +14,7 @@ import { getTypeAppropriateClassName } from "./../SpriteCenterPiece/TypeAppropri
 import PokemonTypes from "./PokemonTypes";
 import Abilities from "./Abilities";
 import Stats from "../Stats/Stats";
+import FlavorTexts from "./../Stats/FlavorTexts";
 
 /**
  * Returns string representation of number with zeroes added at the beginning to ensure atleast three digits
@@ -117,6 +118,10 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
             <Stats
                 className="col-span-2 col-start-3 mt-4"
                 stats={pokemonResource?.data?.stats}
+            />
+            <FlavorTexts
+                className="col-span-4 col-start-1"
+                flavorTexts={speciesResource?.data?.flavor_text_entries}
             />
         </div>
     );
