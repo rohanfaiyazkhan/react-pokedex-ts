@@ -93,7 +93,7 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
     );
 
     return (
-        <div className="flex flex-col md:grid md:grid-cols-4 md:gap-x-4 mt-8">
+        <div className="flex flex-col space-y-4 md:space-y-0 md:grid md:grid-cols-4 md:gap-x-4 mt-8">
             <h1 className="text-lg mb-4 col-span-4">
                 {padToThreeDigits(idNumber)}.{" "}
                 <span className="capitalize font-bold text-2xl">
@@ -115,7 +115,7 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
                 abilities={pokemonResource?.data?.abilities}
             />
             <Stats
-                className="col-span-2 col-start-3 mt-2"
+                className="col-span-2 col-start-3 mt-4"
                 stats={pokemonResource?.data?.stats}
             />
         </div>

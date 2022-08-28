@@ -23,7 +23,7 @@ const IndividualViewSpriteDisplay: React.FC<
         shiny: false,
     });
 
-    const baseClassNames = "relative flex flex-col md:flex-row items-center";
+    const baseClassNames = "relative flex flex-row items-center";
 
     const rootClassNames = combineClassnames(baseClassNames, className);
 

@@ -2,6 +2,7 @@ import { IStat } from "../../data/IStats";
 import { IStyleableProps } from "../../utils/classnamesUtils";
 import { MaxStatValues } from "./MaxStatValues";
 import { StatNames, StatReadableTexts } from "./StatNames";
+import "./slide.css";
 
 function calculateTotalStats(stats: IStat[]) {
     let total = 0;
@@ -35,7 +36,7 @@ const StatBar: React.FC<{ baseStat: number; statName: string }> = ({
             style={{ content: " " }}
         >
             <div
-                className="absolute left-0 top-0 h-2 rouded-sm bg-gray-400"
+                className="absolute left-0 top-0 h-2 rouded-sm bg-gray-400 animation-slide-from-left origin-left"
                 style={{ width, content: " " }}
             />
         </div>
@@ -51,7 +52,7 @@ const Stats: React.FC<IStatsProps> = ({ stats, className, style }) => {
 
     return (
         <div className={className} style={style}>
-            <p className="text-sm">Base Stats</p>
+            <p>Base Stats</p>
             <ul className="flex flex-col" style={style}>
                 {stats.map((stat) => (
                     <li className="flex items-center" key={stat.stat.name}>
