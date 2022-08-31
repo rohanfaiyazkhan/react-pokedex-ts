@@ -1,8 +1,9 @@
 import { IStat } from "../../data/IStats";
-import { IStyleableProps } from "../../utils/classnamesUtils";
+import { IStyleableProps } from "../../utils/stylingUtils";
 import { MaxStatValues } from "./MaxStatValues";
 import { StatNames, StatReadableTexts } from "./StatNames";
 import "./slide.css";
+import { combineClassnames } from "./../../utils/stylingUtils";
 
 function calculateTotalStats(stats: IStat[]) {
     let total = 0;
@@ -28,7 +29,8 @@ const StatBar: React.FC<{ baseStat: number; statName: string }> = ({
     }
 
     const maxStatValue = MaxStatValues[statName as StatNames];
-    const width = `${(baseStat / maxStatValue) * 100}%`;
+    const barToTotalRatio = baseStat / maxStatValue;
+    const width = `${barToTotalRatio * 100}%`;
 
     return (
         <div
@@ -36,7 +38,13 @@ const StatBar: React.FC<{ baseStat: number; statName: string }> = ({
             style={{ content: " " }}
         >
             <div
-                className="absolute left-0 top-0 h-2 rouded-sm bg-gray-400 animation-slide-from-left origin-left"
+                className={combineClassnames(
+                    "absolute left-0 top-0 h-2 rouded-sm  animation-slide-from-left origin-left",
+                    {
+                        "bg-gray-600": barToTotalRatio < 0.5,
+                        "bg-orange-700": barToTotalRatio >= 0.5,
+                    }
+                )}
                 style={{ width, content: " " }}
             />
         </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import { PokemonInferredType } from "../../data/InferredTypes";
 import { PokemonTypeNames } from "../../data/PokemonTypes";
-import { IStyleableProps } from "../../utils/classnamesUtils";
-import { combineClassnames } from "./../../utils/classnamesUtils";
+import { IStyleableProps } from "../../utils/stylingUtils";
+import { combineClassnames } from "../../utils/stylingUtils";
 import {
     getTypeAppropriateClassName,
     TypeAppropriateColorClassNames,

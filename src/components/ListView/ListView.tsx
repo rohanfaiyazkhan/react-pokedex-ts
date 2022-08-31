@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import PokeballIcon from "../../assets/svg-components/PokeballIcon";
 import { LoadingStates } from "../../data/LoadingStates";
 import { useListPaginationState } from "../../utils/hooks/usePaginationState";

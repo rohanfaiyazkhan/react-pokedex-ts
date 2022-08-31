@@ -2,7 +2,11 @@ const { customColors } = require("./src/config/customColors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./src/**/*.{js,jsx,ts,tsx}"],
+    content: [
+        "./src/**/*.{jsx,tsx}",
+        "./public/index.html",
+        "./src/components/SpriteCenterPiece/TypeAppropriateBackgroundColors.ts",
+    ],
     presets: [],
     darkMode: "media", // or 'class'
     theme: {

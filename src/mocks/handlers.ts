@@ -7,6 +7,7 @@ import { ValidResourceNames } from "../contexts/NetworkCacheLayer/ValidResourceN
 import { mockPokemonResponse } from "./pokemon.mock";
 import { mockSpeciesResponse } from "./species.mock";
 import { mockListResponse } from "./listPokemon.mock";
+import { mockEvolutionChain } from "./evolutionChain.mock";
 
 const pokemonRoute = getSinglePokemonApiRoute(ValidResourceNames.Pokemon);
 const speciesRoute = getSinglePokemonApiRoute(ValidResourceNames.Species);
@@ -14,6 +15,9 @@ const listRoute = getPokemonListApiRoute({
     limit: 50,
     offset: 0,
 });
+const evolutionChainRoute = getSinglePokemonApiRoute(
+    ValidResourceNames.EvolutionChain
+);
 
 export const handlers = [
     rest.get(pokemonRoute.toString() + "/:id", (req, res, ctx) => {
@@ -21,6 +25,9 @@ export const handlers = [
     }),
     rest.get(speciesRoute.toString() + "/:id", (req, res, ctx) => {
         return res(ctx.delay(2000), ctx.json(mockSpeciesResponse));
+    }),
+    rest.get(evolutionChainRoute.toString() + "/:id", (req, res, ctx) => {
+        return res(ctx.delay(2000), ctx.json(mockEvolutionChain));
     }),
     rest.get(listRoute.toString(), (req, res, ctx) => {
         return res(ctx.delay(2000), ctx.json(mockListResponse));

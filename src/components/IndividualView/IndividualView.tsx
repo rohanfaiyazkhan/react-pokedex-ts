@@ -9,12 +9,12 @@ import LoadingSpinner from "./../StatusIndicators/LoadingSpinner";
 import { useListResourceCache } from "../../contexts/NetworkCacheLayer/NetworkCacheContext";
 import { LoadingStates } from "../../data/LoadingStates";
 import IndividualViewSpriteDisplay from "./IndividualViewSpriteDisplay";
-import { combineClassnames } from "./../../utils/classnamesUtils";
+import { combineClassnames } from "../../utils/stylingUtils";
 import { getTypeAppropriateClassName } from "./../SpriteCenterPiece/TypeAppropriateBackgroundColors";
 import PokemonTypes from "./PokemonTypes";
 import Abilities from "./Abilities";
 import Stats from "../Stats/Stats";
-import FlavorTexts from "./../Stats/FlavorTexts";
+import FlavorTexts from "./FlavorTexts";
 
 /**
  * Returns string representation of number with zeroes added at the beginning to ensure atleast three digits
@@ -89,7 +89,7 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
 
     const primaryType = pokemonResource?.data?.types?.[0]?.type?.name;
     const spriteContainerClassNames = combineClassnames(
-        "border-2 border-gray-400 rounded shadow-lg col-span-2 row-span-3 col-start-1",
+        "border-2 border-gray-400 rounded shadow-inner col-span-2 row-span-3 col-start-1",
         getTypeAppropriateClassName(primaryType)?.bg
     );
 

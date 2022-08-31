@@ -1,7 +1,7 @@
 import React from "react";
-import { IStyleableProps } from "../../utils/classnamesUtils";
+import { IStyleableProps } from "../../utils/stylingUtils";
 import { getSpriteUrl } from "../../utils/getSpriteUrl";
-import { combineClassnames } from "./../../utils/classnamesUtils";
+import { combineClassnames } from "../../utils/stylingUtils";
 
 interface ISpriteCentrePieceProps extends IStyleableProps {
     pokemonId: number;
