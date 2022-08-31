@@ -1,8 +1,5 @@
 import React from "react";
-import { PokemonSpeciesInferredType } from "../../data/InferredTypes";
 import { IStyleableProps } from "../../utils/stylingUtils";
-import { Fragment } from "react";
-import { combineClassnames } from "./../../utils/stylingUtils";
 
 interface IFlavorText {
     flavor_text: string;
@@ -70,14 +67,14 @@ const FlavorTexts: React.FC<IFlavorTextsProps> = ({
         <div className={className} style={style}>
             <p className="my-4 text-lg">Pokedex Entries</p>
             <ul className="text-sm bg-red-100 rounded-md flex flex-col">
-                <li className="px-4 py-4 flex border-b bg-red-900 text-red-100 font-bold">
+                <li className="px-4 py-4 flex border-b bg-red-900 text-red-100 font-bold rounded-t-md">
                     <p className="font-bold w-1/4 max-w-xs mr-4">Version</p>
                     <p className="font-bol">Text</p>
                 </li>
                 {groupedFlavorTexts.map((entry, idx) => {
                     return (
                         <li
-                            className="px-4 py-4 flex border-b border-red-200"
+                            className="px-4 py-4 flex border-b border-red-200 last:border-b-0 last:rounded-md-b"
                             key={`flavor-text-entry-${entry.versions.join(
                                 "-"
                             )}-${idx}`}
