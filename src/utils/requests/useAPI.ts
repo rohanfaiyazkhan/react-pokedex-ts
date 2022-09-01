@@ -23,7 +23,7 @@ import {
     PokemonSpeciesInferredType,
 } from "../../data/InferredTypes";
 import { useCacheStateHandlerContext } from "../../contexts/NetworkCacheLayer/NetworkCacheStateHandlers";
-import { IEvolutionChainResponse } from "./../../data/EvolutionChain";
+import { IEvolutionChainResponse } from "../../data/IEvolutionChain";
 import { AxiosResponse } from "axios";
 
 const POKEMON = ValidResourceNames.Pokemon;
@@ -145,7 +145,7 @@ export function useIndividualPokemonSpeciesAPI(target: number) {
     );
 }
 
-export function useEvolutionContextApi(target: number) {
+export function useEvolutionChainApi(target: number) {
     return useIndividualResourceAPI<IEvolutionChainResponse>(
         target,
         EVOLUTION_CHAIN

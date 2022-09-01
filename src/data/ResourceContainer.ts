@@ -1,6 +1,6 @@
 import { LoadingStates } from "./LoadingStates";
 import { ValidResourceNames } from "../contexts/NetworkCacheLayer/ValidResourceNames";
-import { IEvolutionChainResponse } from "./EvolutionChain";
+import { IEvolutionChainResponse } from "./IEvolutionChain";
 import {
     PokemonInferredType,
     PokemonListInferredType,

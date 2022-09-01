@@ -6,7 +6,7 @@ import {
     PokemonSpeciesInferredType,
 } from "../../data/InferredTypes";
 import { PaginationInfo } from "../../data/ResourceContainer";
-import { IEvolutionChainResponse } from "./../../data/EvolutionChain";
+import { IEvolutionChainResponse } from "../../data/IEvolutionChain";
 import {
     getPokemonListApiRoute,
     getSinglePokemonApiRoute,

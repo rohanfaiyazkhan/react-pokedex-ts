@@ -15,6 +15,7 @@ import PokemonTypes from "./PokemonTypes";
 import Abilities from "./Abilities";
 import Stats from "../Stats/Stats";
 import FlavorTexts from "./FlavorTexts";
+import EvolutionChain from "./EvolutionChain";
 
 /**
  * Returns string representation of number with zeroes added at the beginning to ensure atleast three digits
@@ -119,6 +120,14 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
                 className="col-span-2 col-start-3 mt-4"
                 stats={pokemonResource?.data?.stats}
             />
+            {speciesResource?.data?.evolution_chain.url && (
+                <EvolutionChain
+                    className="col-span-4 col-start-1"
+                    evolutionChainUrl={
+                        speciesResource?.data?.evolution_chain.url
+                    }
+                />
+            )}
             <FlavorTexts
                 className="col-span-4 col-start-1"
                 flavorTexts={speciesResource?.data?.flavor_text_entries}

@@ -5,7 +5,7 @@ import {
 import { PaginationInfo } from "../../data/ResourceContainer";
 import { ValidResourceNames } from "./ValidResourceNames";
 import { createContext, useContext } from "react";
-import { IEvolutionChainResponse } from "./../../data/EvolutionChain";
+import { IEvolutionChainResponse } from "../../data/IEvolutionChain";
 
 /**
  * All the methods for dealing with cache state data are described here
