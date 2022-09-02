@@ -1,4 +1,4 @@
-export const RouteNames = Object.freeze({
-    Home: "/",
-    View: "/view/:id",
-});
+export enum RouteNames {
+    Home = "/",
+    View = "/view/:id",
+}

@@ -15,7 +15,7 @@ import PokemonTypes from "./PokemonTypes";
 import Abilities from "./Abilities";
 import Stats from "../Stats/Stats";
 import FlavorTexts from "./FlavorTexts";
-import EvolutionChain from "./EvolutionChain";
+import EvolutionChain from "./EvolutionView/EvolutionChain";
 
 /**
  * Returns string representation of number with zeroes added at the beginning to ensure atleast three digits
@@ -123,6 +123,9 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
             {speciesResource?.data?.evolution_chain.url && (
                 <EvolutionChain
                     className="col-span-4 col-start-1"
+                    containerClassName={
+                        getTypeAppropriateClassName(primaryType)?.bg
+                    }
                     evolutionChainUrl={
                         speciesResource?.data?.evolution_chain.url
                     }
