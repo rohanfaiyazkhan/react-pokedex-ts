@@ -15,7 +15,7 @@ function getIndividualCardUrl(id: number) {
 
 const ListCard: React.FC<IListCardProps> = ({ pokemonId, name }) => {
     const baseClassNames =
-        "relative px-8 py-3 bg-red-100 border border-gray-500 rounded flex flex-col items-center shadow-lg scale-100";
+        "relative px-8 py-3 bg-red-100 border border-gray-500 rounded flex flex-col items-center justify-center shadow-lg scale-100";
     const transitionClassNames =
         "transition-transform hover:scale-110 focus:ring-red-300";
     const rootClassNames = combineClassnames(
@@ -24,13 +24,17 @@ const ListCard: React.FC<IListCardProps> = ({ pokemonId, name }) => {
     );
 
     return (
-        <Link to={getIndividualCardUrl(pokemonId)} className={rootClassNames}>
+        <Link
+            to={getIndividualCardUrl(pokemonId)}
+            className={rootClassNames}
+            style={{ minHeight: "16rem" }}
+        >
             <div
                 aria-hidden
                 style={{ content: " " }}
                 className="absolute z-0 h-1/2 w-full top-0 left-0 bg-red-800 opacity-60 rounded-t"
             />
-            <SpriteCentrePiece pokemonId={pokemonId} />
+            <SpriteCentrePiece className="h-40" pokemonId={pokemonId} />
             <p className="z-10 flex items-center justify-start">
                 <span className="mr-2 text-sm">{pokemonId}.</span>
                 <span className="uppercase text-lg">{name}</span>

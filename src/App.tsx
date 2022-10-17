@@ -6,7 +6,7 @@ import AppRouter from "./router/Routes";
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <div className="bg-gray-100 shadow-md lg:border-l-2 lg:border-r-2 border-gray-600 w-full h-full mx-auto min-h-screen lg:max-w-screen-lg">
+            <div className="w-full h-full mx-auto min-h-screen xl:max-w-screen-xl 2xl:max-w-screen-2xl">
                 <ContextWrappers>
                     <AppRouter />
                 </ContextWrappers>
