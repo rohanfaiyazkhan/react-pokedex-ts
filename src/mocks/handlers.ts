@@ -4,10 +4,10 @@ import {
     getPokemonListApiRoute,
 } from "../utils/requests/getApiRoute";
 import { ValidResourceNames } from "../contexts/NetworkCacheLayer/ValidResourceNames";
-import { mockPokemonResponse } from "./pokemon.mock";
-import { mockSpeciesResponse } from "./species.mock";
-import { mockListResponse } from "./listPokemon.mock";
-import { mockEvolutionChain } from "./evolutionChain.mock";
+import { mockPokemonResponse } from "./data/pokemon.mock";
+import { mockSpeciesResponse } from "./data/species.mock";
+import { mockListResponse } from "./data/listPokemon.mock";
+import { mockEvolutionChain } from "./data/evolutionChain.mock";
 
 const pokemonRoute = getSinglePokemonApiRoute(ValidResourceNames.Pokemon);
 const speciesRoute = getSinglePokemonApiRoute(ValidResourceNames.Species);
