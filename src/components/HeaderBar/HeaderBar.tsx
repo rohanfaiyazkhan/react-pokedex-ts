@@ -1,5 +1,5 @@
 import React from "react";
-import { useMatch, useNavigate } from "react-router";
+import { useMatch } from "react-router";
 import { Link } from "react-router-dom";
 import ArrowRightIcon from "../../assets/svg-components/ArrowRightIcon";
 import { RouteNames } from "../../router/RouteNames";

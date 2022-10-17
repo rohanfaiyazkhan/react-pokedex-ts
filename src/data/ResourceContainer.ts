@@ -4,6 +4,7 @@ import { IEvolutionChainResponse } from "./IEvolutionChain";
 import {
     PokemonInferredType,
     PokemonListInferredType,
+    PokemonMoveInferredType,
     PokemonSpeciesInferredType,
 } from "./InferredTypes";
 
@@ -31,5 +32,6 @@ export interface IndividualResourceContainer {
         [ValidResourceNames.Pokemon]: ResourceContent<PokemonInferredType>;
         [ValidResourceNames.Species]: ResourceContent<PokemonSpeciesInferredType>;
         [ValidResourceNames.EvolutionChain]: ResourceContent<IEvolutionChainResponse>;
+        [ValidResourceNames.Move]: ResourceContent<PokemonMoveInferredType>;
     };
 }

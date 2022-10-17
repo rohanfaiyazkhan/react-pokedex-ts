@@ -1,11 +1,7 @@
-import {
-    PokemonInferredType,
-    PokemonListInferredType,
-} from "../../data/InferredTypes";
+import { PokemonListInferredType } from "../../data/InferredTypes";
 import { PaginationInfo } from "../../data/ResourceContainer";
 import { ValidResourceNames } from "./ValidResourceNames";
 import { createContext, useContext } from "react";
-import { IEvolutionChainResponse } from "../../data/IEvolutionChain";
 
 /**
  * All the methods for dealing with cache state data are described here
