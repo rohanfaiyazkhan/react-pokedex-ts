@@ -11,7 +11,7 @@ const AppRouter: React.FC<IRouterProps> = (props) => {
     return (
         <div className="transition-colors duration-300">
             <HeaderBar />
-            <main className="px-2 pb-4 md:pb-8 lg:pb-24 md:px-8">
+            <main className="pb-4 md:pb-8 lg:pb-24 px-2 md:px-8">
                 <Routes>
                     <Route path={RouteNames.Home} element={<ListView />} />
                     <Route
