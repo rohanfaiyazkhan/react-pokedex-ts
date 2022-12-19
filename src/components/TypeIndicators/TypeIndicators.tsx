@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-import { IPokemonType } from "../../data/PokemonTypes";
+import { PokemonType } from "../../data/PokemonTypes/PokemonType";
 import { combineClassnames, IStyleableProps } from "../../utils/stylingUtils";
 
 interface ITypeIndicatorsProps extends IStyleableProps {
-    types: IPokemonType[];
+    types: PokemonType[];
 }
 
 const TypeIndicator: React.FC<React.PropsWithChildren> = ({ children }) => (

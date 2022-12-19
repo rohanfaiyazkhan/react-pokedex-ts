@@ -1,6 +1,10 @@
-import { PokemonTypeNames } from "../../data/PokemonTypes";
+import { PokemonTypeNames } from "../data/PokemonTypes/PokemonType";
 
-export const TypeAppropriateColorClassNames = Object.freeze({
+/**
+ * Appropriate background and text color classNames for each pokemon type
+ * For example water types will have a blue background and fire types will have a red background
+ */
+export const PokemonTypeColorClassNames = {
     [PokemonTypeNames.Normal]: {
         text: "text-deep-orange-900",
         bg: "bg-deep-orange-100",
@@ -73,14 +77,4 @@ export const TypeAppropriateColorClassNames = Object.freeze({
         text: "text-gray-900",
         bg: "bg-pink-300",
     },
-});
-
-export function getTypeAppropriateClassName(typeName?: string) {
-    if (
-        typeName === undefined ||
-        !Object.values(PokemonTypeNames).includes(typeName as PokemonTypeNames)
-    )
-        return undefined;
-
-    return TypeAppropriateColorClassNames[typeName as PokemonTypeNames];
-}
+} as const;

@@ -1,12 +1,12 @@
 import React from "react";
 import { PokemonInferredType } from "../../data/InferredTypes";
-import { PokemonTypeNames } from "../../data/PokemonTypes";
+import { PokemonTypeNames } from "../../data/PokemonTypes/PokemonType";
 import { IStyleableProps } from "../../utils/stylingUtils";
 import { combineClassnames } from "../../utils/stylingUtils";
 import {
     getTypeAppropriateClassName,
     TypeAppropriateColorClassNames,
-} from "./../SpriteCenterPiece/TypeAppropriateBackgroundColors";
+} from "../../colors/PokemonTypeColorClassNames";
 
 interface IPokemonTypesProps extends IStyleableProps {
     types?: PokemonInferredType["types"];

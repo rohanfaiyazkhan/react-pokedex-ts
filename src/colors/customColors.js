@@ -2,6 +2,8 @@
  * Imported from
  * https://davidpiesse.github.io/tailwind-md-colours/
  *
+ * Note that this file needs to be a Javascript file so it can be imported into tailwind config
+ *
  * The extra colors were needed to have enough colors to differentiate pokemon types
  *
  * All colours are generated from Material Design Docs
