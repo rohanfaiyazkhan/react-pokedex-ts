@@ -1,4 +1,4 @@
-export enum RouteNames {
-    Home = "/",
-    View = "/view/:id",
-}
+export const RouteNames = {
+    Home: "/",
+    View: "/view/:id",
+} as const;
