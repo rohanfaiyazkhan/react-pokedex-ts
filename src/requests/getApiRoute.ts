@@ -1,8 +1,7 @@
-import { BASE_API_URL } from "../../contexts/NetworkCacheLayer/NetworkConfig";
-import { ValidResourceNames } from "../../contexts/NetworkCacheLayer/ValidResourceNames";
-import { PaginationInfo } from "../../data/ResourceContainer";
+import { BASE_API_URL } from "./NetworkConfig";
+import { PaginationInfo } from "../data/PaginationInfo";
 
-const VALID_RESOURCE_NAMES = Object.values(ValidResourceNames);
+import { ResourceKeys } from "./ResourceKeys";
 
 /**
  *
@@ -11,19 +10,9 @@ const VALID_RESOURCE_NAMES = Object.values(ValidResourceNames);
  * @return URL object of PokeAPI route to make a GET request to
  */
 export function getSinglePokemonApiRoute(
-    resourceName: ValidResourceNames,
+    resourceName: typeof ResourceKeys[keyof typeof ResourceKeys],
     id?: number
 ) {
-    const isResourceUnexpected = !VALID_RESOURCE_NAMES.includes(resourceName);
-
-    if (isResourceUnexpected) {
-        throw new Error(
-            `[getApiRoute]: resourceName is unexpected: ${resourceName}. Expected ${VALID_RESOURCE_NAMES.join(
-                ", "
-            )}`
-        );
-    }
-
     const url = new URL(BASE_API_URL);
     const pathArray = [];
 

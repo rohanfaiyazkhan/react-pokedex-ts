@@ -1,6 +1,6 @@
 import { PokemonListInferredType } from "../../data/InferredTypes";
 import { PaginationInfo } from "../../data/ResourceContainer";
-import { ValidResourceNames } from "./ValidResourceNames";
+import { ResourceKeys } from "../../requests/ResourceKeys";
 import { createContext, useContext } from "react";
 
 /**
@@ -8,16 +8,16 @@ import { createContext, useContext } from "react";
  */
 export type NetworkCacheStateHandlers = {
     individualPokemonInfoRequestMade: (
-        resourceType: ValidResourceNames,
+        resourceType: ResourceKeys,
         target: number
     ) => void;
     individualPokemonInfoRequestSucceeded: (
-        resourceType: ValidResourceNames,
+        resourceType: ResourceKeys,
         target: number,
         results: any
     ) => void;
     individualPokemonInfoRequestFailed: (
-        resourceType: ValidResourceNames,
+        resourceType: ResourceKeys,
         target: number,
         error: any
     ) => void;

@@ -3,7 +3,7 @@ type NameAndUrl = {
     url: string;
 };
 
-export interface IEvolutionDetails {
+export type EvolutionDetails = {
     gender: string | null;
     held_item: NameAndUrl | null;
     item: NameAndUrl | null;
@@ -24,20 +24,20 @@ export interface IEvolutionDetails {
         url: string;
     };
     turn_upside_down: boolean;
-}
+};
 
-export interface IEvolutionChain {
-    evolution_details: IEvolutionDetails[];
+export type EvolutionChain = {
+    evolution_details: EvolutionDetails[];
     is_baby: boolean;
     species: {
         name: string;
         url: string;
     };
-    evolves_to: IEvolutionChain[];
-}
+    evolves_to: EvolutionChain[];
+};
 
-export interface IEvolutionChainResponse {
+export type EvolutionChainResponse = {
     baby_trigger_item: unknown;
-    chain: IEvolutionChain;
+    chain: EvolutionChain;
     id: number;
-}
+};

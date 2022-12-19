@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import ArrowRightIcon from "../../../assets/svg-components/ArrowRightIcon";
-import { IEvolutionChain } from "../../../data/IEvolutionChain";
+import { IEvolutionChain } from "../../../utils/requests/evolutionChain/data";
 import { getRoute } from "../../../router/getRoute";
 import { RouteNames } from "../../../router/RouteNames";
 import { getSpriteUrl } from "../../../utils/getSpriteUrl";

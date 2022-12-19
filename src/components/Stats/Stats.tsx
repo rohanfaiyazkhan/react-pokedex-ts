@@ -1,11 +1,11 @@
-import { IStat } from "../../data/IStats";
+import { Stats } from "../../data/Stats";
 import { IStyleableProps } from "../../utils/stylingUtils";
 import { MaxStatValues } from "./MaxStatValues";
 import { StatNames, StatReadableTexts } from "./StatNames";
 import "./slide.css";
 import { combineClassnames } from "./../../utils/stylingUtils";
 
-function calculateTotalStats(stats: IStat[]) {
+function calculateTotalStats(stats: Stats[]) {
     let total = 0;
 
     for (const stat of stats) {
@@ -15,8 +15,8 @@ function calculateTotalStats(stats: IStat[]) {
     return total;
 }
 
-interface IStatsProps extends IStyleableProps {
-    stats?: IStat[];
+interface StatsProps extends IStyleableProps {
+    stats?: Stats[];
 }
 
 const StatBar: React.FC<{ baseStat: number; statName: string }> = ({
@@ -51,7 +51,7 @@ const StatBar: React.FC<{ baseStat: number; statName: string }> = ({
     );
 };
 
-const Stats: React.FC<IStatsProps> = ({ stats, className, style }) => {
+const Stats: React.FC<StatsProps> = ({ stats, className, style }) => {
     if (stats === undefined) {
         return null;
     }

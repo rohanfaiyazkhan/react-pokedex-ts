@@ -1,7 +1,11 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import ContextWrappers from "./contexts/ContextWrappers";
 import AppRouter from "./router/Routes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// Refactoring the way context works in our app for now
+// import ContextWrappers from "./contexts/ContextWrappers";
+
+const queryClient = new QueryClient();
 
 const Main: React.FC<React.PropsWithChildren> = (props) => {
     return (
@@ -14,11 +18,11 @@ const Main: React.FC<React.PropsWithChildren> = (props) => {
 const App: React.FC = () => {
     return (
         <BrowserRouter>
-            <Main>
-                <ContextWrappers>
+            <QueryClientProvider client={queryClient}>
+                <Main>
                     <AppRouter />
-                </ContextWrappers>
-            </Main>
+                </Main>
+            </QueryClientProvider>
         </BrowserRouter>
     );
 };

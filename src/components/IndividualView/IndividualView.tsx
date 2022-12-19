@@ -17,19 +17,7 @@ import Stats from "../Stats/Stats";
 import FlavorTexts from "./FlavorTexts";
 import EvolutionChain from "./EvolutionView/EvolutionChain";
 import Movesets from "./Moveset/Movesets";
-
-/**
- * Returns string representation of number with zeroes added at the beginning to ensure atleast three digits
- */
-function padToThreeDigits(input: number) {
-    let stringInput = input.toString();
-
-    while (stringInput.length < 3) {
-        stringInput = "0" + stringInput;
-    }
-
-    return stringInput;
-}
+import { padToThreeDigits } from "../../utils/genericUtils";
 
 interface IIndividualProps {}
 
@@ -51,19 +39,19 @@ const LoadingView: React.FC<{ pokemonName?: string; pokemonId: number }> = (
 };
 
 const IndividualView: React.FC<IIndividualProps> = (props) => {
-    const { id } = useParams<{ id: string | undefined }>();
+    const { id: idAsString } = useParams<{ id: string | undefined }>();
 
-    const idNumber = Number(id);
+    const id = Number(idAsString);
 
-    if (Number.isNaN(idNumber)) {
+    if (Number.isNaN(id)) {
         throw new PokemonUnexpectedIdError(id);
     }
 
     const listResource = useListResourceCache();
     const listData = listResource?.data;
 
-    const [pokemonResource] = useIndividualPokemonAPI(idNumber);
-    const [speciesResource] = useIndividualPokemonSpeciesAPI(idNumber);
+    const [pokemonResource] = useIndividualPokemonAPI(id);
+    const [speciesResource] = useIndividualPokemonSpeciesAPI(id);
 
     let pokemonName = pokemonResource?.data?.name;
 
@@ -76,8 +64,8 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
         const limit = listResource.pagination!.limit;
         const offset = listResource.pagination?.offset ?? 0;
 
-        if (offset > idNumber && limit + offset < idNumber) {
-            pokemonName = listData.results[idNumber - offset]?.name;
+        if (offset > id && limit + offset < id) {
+            pokemonName = listData.results[id - offset]?.name;
         }
     }
 
@@ -86,7 +74,7 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
         speciesResource?.loadingState === LoadingStates.Loading;
 
     if (isLoading) {
-        return <LoadingView pokemonName={pokemonName} pokemonId={idNumber} />;
+        return <LoadingView pokemonName={pokemonName} pokemonId={id} />;
     }
 
     const primaryType = pokemonResource?.data?.types?.[0]?.type?.name;
@@ -98,14 +86,14 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
     return (
         <div className="flex flex-col space-y-4 md:space-y-0 md:grid md:grid-cols-4 md:gap-x-4 mt-8">
             <h1 className="text-lg mb-4 col-span-4">
-                {padToThreeDigits(idNumber)}.{" "}
+                {padToThreeDigits(id)}.{" "}
                 <span className="capitalize font-bold text-2xl">
                     {pokemonName}
                 </span>
             </h1>
             <div className={spriteContainerClassNames}>
                 <IndividualViewSpriteDisplay
-                    pokemonId={idNumber}
+                    pokemonId={id}
                     pokemonName={pokemonName}
                 />
             </div>

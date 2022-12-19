@@ -3,20 +3,20 @@ import {
     getSinglePokemonApiRoute,
     getPokemonListApiRoute,
 } from "../utils/requests/getApiRoute";
-import { ValidResourceNames } from "../contexts/NetworkCacheLayer/ValidResourceNames";
+import { ResourceKeys } from "../requests/ResourceKeys";
 import { mockPokemonResponse } from "./data/pokemon.mock";
 import { mockSpeciesResponse } from "./data/species.mock";
 import { mockListResponse } from "./data/listPokemon.mock";
 import { mockEvolutionChain } from "./data/evolutionChain.mock";
 
-const pokemonRoute = getSinglePokemonApiRoute(ValidResourceNames.Pokemon);
-const speciesRoute = getSinglePokemonApiRoute(ValidResourceNames.Species);
+const pokemonRoute = getSinglePokemonApiRoute(ResourceKeys.Pokemon);
+const speciesRoute = getSinglePokemonApiRoute(ResourceKeys.Species);
 const listRoute = getPokemonListApiRoute({
     limit: 50,
     offset: 0,
 });
 const evolutionChainRoute = getSinglePokemonApiRoute(
-    ValidResourceNames.EvolutionChain
+    ResourceKeys.EvolutionChain
 );
 
 export const handlers = [

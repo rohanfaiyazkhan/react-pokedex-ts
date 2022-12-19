@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { NumberOfItemsPerPage } from "../../contexts/NetworkCacheLayer/NetworkConfig";
+import { NumberOfItemsPerPage } from "../../requests/NetworkConfig";
 
 const PAGE_SIZE = NumberOfItemsPerPage.DEFAULT; // Not letting this be customizable for now
 
