@@ -1,9 +1,9 @@
-import axios from "axios";
 import { PokemonInferredType } from "./data";
-import { getSinglePokemonApiRoute } from "../getApiRoute";
+import { getSinglePokemonApiPath } from "../getApiRoute";
 import { POKEMON_RESOURCE_KEY } from "./key";
+import { apiRequest } from "../httpClient";
 
-export function makeIndividualPokemonRequest(id: number) {
-    const apiUrl = getSinglePokemonApiRoute(POKEMON_RESOURCE_KEY, id);
-    return axios.get<PokemonInferredType>(apiUrl.toString());
+export async function makeIndividualPokemonRequest(id: number) {
+    const path = getSinglePokemonApiPath(POKEMON_RESOURCE_KEY, id);
+    return apiRequest<PokemonInferredType>(path.toString());
 }

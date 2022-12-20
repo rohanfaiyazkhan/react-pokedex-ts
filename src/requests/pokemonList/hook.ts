@@ -1,14 +1,27 @@
 import { PaginationInfo } from "../../data/PaginationInfo";
 import { useQuery } from "@tanstack/react-query/build/lib/useQuery";
-import { AxiosResponse } from "axios";
 import { PokemonListInferredType } from "./data";
-import { POKEMON_LIST_RESOURCE_KEY } from "./key";
+import { PokemonListResourceKeyFactory } from "./key";
 import { makeListPokemonRequest } from "./request";
+import { useQueryClient } from "@tanstack/react-query";
 
-export function useListPokemonAPI(paginationInfo: PaginationInfo) {
-    return useQuery<AxiosResponse<PokemonListInferredType>>({
-        queryKey: [POKEMON_LIST_RESOURCE_KEY, paginationInfo],
+export function useListPokemonQuery(paginationInfo: PaginationInfo) {
+    return useQuery({
+        queryKey: PokemonListResourceKeyFactory.paginated(paginationInfo),
         queryFn: () => makeListPokemonRequest(paginationInfo),
         keepPreviousData: true,
     });
+}
+
+export function useListCacheData(paginationInfo?: PaginationInfo) {
+    const queryClient = useQueryClient();
+
+    const queryKey = paginationInfo
+        ? PokemonListResourceKeyFactory.paginated(paginationInfo)
+        : PokemonListResourceKeyFactory.all;
+
+    const listQuery =
+        queryClient.getQueryData<PokemonListInferredType>(queryKey);
+
+    return listQuery;
 }

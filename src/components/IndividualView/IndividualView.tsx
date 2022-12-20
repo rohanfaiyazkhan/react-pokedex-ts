@@ -1,16 +1,9 @@
 import React from "react";
 import { useParams } from "react-router";
-import {
-    useIndividualPokemonAPI,
-    useIndividualPokemonSpeciesAPI,
-} from "./../../utils/requests/useAPI";
 import { PokemonUnexpectedIdError } from "./PokemonUnexpectedIdError";
 import LoadingSpinner from "./../StatusIndicators/LoadingSpinner";
-import { useListResourceCache } from "../../contexts/NetworkCacheLayer/NetworkCacheContext";
-import { LoadingStates } from "../../data/LoadingStates";
 import IndividualViewSpriteDisplay from "./IndividualViewSpriteDisplay";
 import { combineClassnames } from "../../utils/stylingUtils";
-import { getTypeAppropriateClassName } from "./../SpriteCenterPiece/TypeAppropriateBackgroundColors";
 import PokemonTypes from "./PokemonTypes";
 import Abilities from "./Abilities";
 import Stats from "../Stats/Stats";
@@ -18,6 +11,9 @@ import FlavorTexts from "./FlavorTexts";
 import EvolutionChain from "./EvolutionView/EvolutionChain";
 import Movesets from "./Moveset/Movesets";
 import { padToThreeDigits } from "../../utils/genericUtils";
+import { useIndividualPokemonQuery } from "./../../requests/pokemon/hook";
+import { useIndividualPokemonSpeciesQuery } from "./../../requests/pokemonSpecies/hook";
+import { getPokemonTypeColorClassNames } from "./../../colors/getPokemonTypeColorClassNames";
 
 interface IIndividualProps {}
 
@@ -47,40 +43,25 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
         throw new PokemonUnexpectedIdError(id);
     }
 
-    const listResource = useListResourceCache();
-    const listData = listResource?.data;
-
-    const [pokemonResource] = useIndividualPokemonAPI(id);
-    const [speciesResource] = useIndividualPokemonSpeciesAPI(id);
-
-    let pokemonName = pokemonResource?.data?.name;
-
-    if (
-        pokemonName === undefined &&
-        listData?.count !== undefined &&
-        listData.count > 0 &&
-        listResource.pagination !== undefined
-    ) {
-        const limit = listResource.pagination!.limit;
-        const offset = listResource.pagination?.offset ?? 0;
-
-        if (offset > id && limit + offset < id) {
-            pokemonName = listData.results[id - offset]?.name;
-        }
-    }
+    const pokemonQueryResult = useIndividualPokemonQuery(id);
+    const speciesQueryResult = useIndividualPokemonSpeciesQuery(id);
 
     const isLoading =
-        pokemonResource?.loadingState === LoadingStates.Loading ||
-        speciesResource?.loadingState === LoadingStates.Loading;
+        pokemonQueryResult.isLoading || speciesQueryResult.isLoading;
 
     if (isLoading) {
-        return <LoadingView pokemonName={pokemonName} pokemonId={id} />;
+        return <LoadingView pokemonId={id} />;
     }
 
-    const primaryType = pokemonResource?.data?.types?.[0]?.type?.name;
-    const spriteContainerClassNames = combineClassnames(
+    const pokemonData = pokemonQueryResult.data;
+    const speciesData = speciesQueryResult.data;
+
+    const pokemonName = pokemonData?.name;
+
+    const primaryType = pokemonData?.types?.[0]?.type?.name;
+    let spriteContainerClassNames = combineClassnames(
         "border-2 border-gray-400 rounded shadow-inner col-span-2 row-span-3 col-start-1",
-        getTypeAppropriateClassName(primaryType)?.bg
+        getPokemonTypeColorClassNames(primaryType)?.bg
     );
 
     return (
@@ -99,33 +80,29 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
             </div>
             <PokemonTypes
                 className="col-span-1 col-start-3"
-                types={pokemonResource?.data?.types}
+                types={pokemonData?.types}
             />
             <Abilities
                 className="col-span-1 col-start-4"
-                abilities={pokemonResource?.data?.abilities}
+                abilities={pokemonData?.abilities}
             />
             <Stats
                 className="col-span-2 col-start-3 mt-4"
-                stats={pokemonResource?.data?.stats}
+                stats={pokemonData?.stats}
             />
-            {speciesResource?.data?.evolution_chain.url && (
+            {speciesData?.evolution_chain.url && (
                 <EvolutionChain
                     className="col-span-4 col-start-1"
                     containerClassName={
-                        getTypeAppropriateClassName(primaryType)?.bg
+                        getPokemonTypeColorClassNames(primaryType)?.bg
                     }
-                    evolutionChainUrl={
-                        speciesResource?.data?.evolution_chain.url
-                    }
+                    evolutionChainUrl={speciesData?.evolution_chain.url}
                 />
             )}
-            {pokemonResource?.data?.moves && (
-                <Movesets moves={pokemonResource?.data?.moves} />
-            )}
+            {pokemonData?.moves && <Movesets moves={pokemonData?.moves} />}
             <FlavorTexts
                 className="col-span-4 col-start-1"
-                flavorTexts={speciesResource?.data?.flavor_text_entries}
+                flavorTexts={speciesData?.flavor_text_entries}
             />
         </div>
     );

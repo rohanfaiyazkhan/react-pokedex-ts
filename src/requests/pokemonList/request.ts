@@ -1,10 +1,10 @@
-import axios from "axios";
 import { PaginationInfo } from "../../data/PaginationInfo";
-import { getPokemonListApiRoute } from "../getApiRoute";
+import { getPokemonListApiPath } from "../getApiRoute";
+import { apiRequest } from "../httpClient";
 import { PokemonListInferredType } from "./data";
 
-export function makeListPokemonRequest(pagination: PaginationInfo) {
-    const listUrl = getPokemonListApiRoute(pagination);
+export async function makeListPokemonRequest(pagination: PaginationInfo) {
+    const listUrl = getPokemonListApiPath(pagination);
 
-    return axios.get<PokemonListInferredType>(listUrl.toString());
+    return apiRequest<PokemonListInferredType>(listUrl.toString());
 }

@@ -1,4 +1,3 @@
-import { BASE_API_URL } from "./NetworkConfig";
 import { PaginationInfo } from "../data/PaginationInfo";
 
 import { ResourceKeys } from "./ResourceKeys";
@@ -9,11 +8,10 @@ import { ResourceKeys } from "./ResourceKeys";
  * @param  id (Optional) If fetching one resource, ID of said resource
  * @return URL object of PokeAPI route to make a GET request to
  */
-export function getSinglePokemonApiRoute(
+export function getSinglePokemonApiPath(
     resourceName: typeof ResourceKeys[keyof typeof ResourceKeys],
     id?: number
 ) {
-    const url = new URL(BASE_API_URL);
     const pathArray = [];
 
     pathArray.push(resourceName);
@@ -22,12 +20,12 @@ export function getSinglePokemonApiRoute(
         pathArray.push(id.toString());
     }
 
-    url.pathname = url.pathname + "/" + pathArray.join("/");
+    const url = new URL("/" + pathArray.join("/"));
     return url;
 }
 
-export function getPokemonListApiRoute(pagination: PaginationInfo) {
-    const url = new URL(BASE_API_URL + "/pokemon");
+export function getPokemonListApiPath(pagination: PaginationInfo) {
+    const url = new URL("/pokemon");
     url.searchParams.set("limit", pagination.limit.toString());
     url.searchParams.set("offset", pagination.offset.toString());
 
