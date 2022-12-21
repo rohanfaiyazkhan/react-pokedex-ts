@@ -6,7 +6,7 @@ import { queryClient } from "./requests/queryClient";
 
 const Main: React.FC<React.PropsWithChildren> = (props) => {
     return (
-        <main className="w-full h-full mx-auto min-h-screen xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+        <main className="w-full h-full mx-auto min-h-screen xl:max-w-screen-xl 2xl:max-w-screen-2xl font-sans">
             {props.children}
         </main>
     );

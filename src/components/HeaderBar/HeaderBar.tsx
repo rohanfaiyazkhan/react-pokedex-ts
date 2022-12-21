@@ -9,14 +9,15 @@ interface IHeaderBarProps {}
 
 const BackToListView: React.FC = () => {
     return (
-        <Link to={RouteNames.Home}>
-            <p className="px-2 md:px-8 flex items-center h-full">
+        <div className="flex items-center justify-start">
+            <Link
+                to={RouteNames.Home}
+                className="bg-blue-900 rounded-lg transition-colors hover:bg-purple-900 px-2 lg:px-4 py-2 mb-2 lg:ml-8 flex items-center h-full text-lg text-red-100"
+            >
                 <ArrowRightIcon className="rotate-180 w-6 h-6 mt-1 mr-2" />
-                <span className="hidden md:inline text-sm">
-                    Go back to full list
-                </span>
-            </p>
-        </Link>
+                <span className="text-sm lg:text-base">Back</span>
+            </Link>
+        </div>
     );
 };
 
@@ -25,11 +26,17 @@ const HeaderBar: React.FC<IHeaderBarProps> = (props) => {
     const isIndividualView = useMatch("/view/:id");
 
     return (
-        <header className="pt-4 lg:pt-12 pb-4 grid grid-cols-4">
+        <header className="mx-2 pt-4 lg:pt-12 pb-4 flex flex-col lg:grid grid-cols-4 items-center">
             {isIndividualView && <BackToListView />}
-            <h1 className="col-start-2 text-center text-2xl lg:text-4xl font-bold place-items-center col-span-2">
-                PokeDex App!
-            </h1>
+            <div className="col-start-2 col-span-2">
+                <h1 className=" text-center text-2xl lg:text-4xl font-bold font-heading">
+                    PokéPedia!
+                </h1>
+                <p className="font-heading text-center text-lg">
+                    Find out stats, abilities, movesets and more from all your
+                    favourite Pokémon
+                </p>
+            </div>
         </header>
     );
 };
