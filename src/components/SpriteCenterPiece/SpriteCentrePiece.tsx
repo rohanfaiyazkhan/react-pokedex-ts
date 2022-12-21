@@ -21,7 +21,7 @@ const SpriteCentrePiece: React.FC<ISpriteCentrePieceProps> = ({
 
     let rootClassName = combineClassnames(
         className,
-        "relative rounded-full bg-red-50 border-2 border-red-900 shadow-inner"
+        "relative rounded-full bg-red-50 border border-red-400 shadow-inner"
     );
 
     return (
