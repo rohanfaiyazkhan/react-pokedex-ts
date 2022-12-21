@@ -54,7 +54,7 @@ const ListView: React.FC<IListViewProps> = (props) => {
 
     return (
         <Fragment>
-            <div className="flex flex-col md:grid md:grid-cols-4 md:gap-2 lg:gap-4">
+            <div className="flex flex-col space-y-2 md:space-y-0 md:grid md:grid-cols-4 md:gap-2 lg:gap-4">
                 {data?.results?.map((data, idx) => {
                     const pokemonId = startIndex + idx;
 

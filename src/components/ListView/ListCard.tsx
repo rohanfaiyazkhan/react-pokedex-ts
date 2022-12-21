@@ -35,7 +35,7 @@ const ListCard: React.FC<IListCardProps> = ({ pokemonId, name }) => {
             />
             <p className="z-10 flex items-center justify-start pt-2">
                 <span className="mr-2 text-sm xl:text-lg">{pokemonId}.</span>
-                <span className="uppercase text-lg xl:text-2xl">{name}</span>
+                <span className="uppercase text-lg">{name}</span>
             </p>
         </Link>
     );
