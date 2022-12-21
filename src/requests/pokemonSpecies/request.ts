@@ -1,11 +1,9 @@
 import { PokemonSpeciesInferredType } from "./data";
 import { apiRequest } from "../httpClient";
-import { ApiPaths } from "./../ApiPaths";
-import { AxiosRequestConfig } from "axios";
+import { ApiPathFactory } from "./../ApiPathFactory";
 
 export function makePokemonSpeciesRequest(id: number) {
-    const path = ApiPaths.Species;
-    const options: AxiosRequestConfig = { params: { id } };
+    const path = ApiPathFactory.species(id);
 
-    return apiRequest<PokemonSpeciesInferredType>(path, options);
+    return apiRequest<PokemonSpeciesInferredType>(path);
 }

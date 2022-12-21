@@ -1,11 +1,9 @@
 import { apiRequest } from "../httpClient";
 import { EvolutionChainResponse } from "./data";
-import { ApiPaths } from "./../ApiPaths";
-import { AxiosRequestConfig } from "axios";
+import { ApiPathFactory } from "./../ApiPathFactory";
 
 export function makeEvolutionChainRequest(id: number) {
-    const path = ApiPaths.EvolutionChain;
-    const options: AxiosRequestConfig = { params: { id } };
+    const path = ApiPathFactory.evolutionChain(id);
 
-    return apiRequest<EvolutionChainResponse>(path, options);
+    return apiRequest<EvolutionChainResponse>(path);
 }
