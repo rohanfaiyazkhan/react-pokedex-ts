@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router";
-import { PokemonUnexpectedIdError } from "./PokemonUnexpectedIdError";
+import { PokemonUnexpectedIdError } from "../../data/missingPokemonDataErrors/PokemonUnexpectedIdError";
 import LoadingSpinner from "./../StatusIndicators/LoadingSpinner";
 import IndividualViewSpriteDisplay from "./IndividualViewSpriteDisplay";
 import { combineClassnames } from "../../utils/stylingUtils";
