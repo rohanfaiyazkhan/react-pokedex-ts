@@ -1,10 +1,9 @@
 import React from "react";
-import { LoadingStates } from "../../../data/LoadingStates";
-import { useEvolutionChainApi } from "../../../utils/requests/useAPI";
 import { IStyleableProps } from "../../../utils/stylingUtils";
 import LoadingSpinner from "../../StatusIndicators/LoadingSpinner";
 import { combineClassnames } from "../../../utils/stylingUtils";
-import Evolution from "./Evolution";
+import EvolutionChainView from "./EvolutionChainView";
+import { useEvolutionChainQuery } from "../../../requests/evolutionChain/hook";
 
 interface IEvolutionChainProps extends IStyleableProps {
     evolutionChainUrl: string;
@@ -18,7 +17,7 @@ function getEvolutionIdFromUrl(url: string) {
     return id;
 }
 
-const EvolutionChain: React.FC<IEvolutionChainProps> = ({
+const EvolutionChainsView: React.FC<IEvolutionChainProps> = ({
     evolutionChainUrl,
     className,
     style,
@@ -26,11 +25,13 @@ const EvolutionChain: React.FC<IEvolutionChainProps> = ({
 }) => {
     const id = getEvolutionIdFromUrl(evolutionChainUrl);
 
-    const [evolutionChain] = useEvolutionChainApi(id);
+    const evolutionChainQueryResults = useEvolutionChainQuery(id);
+    const data = evolutionChainQueryResults.data;
 
-    const isLoading = evolutionChain?.loadingState === LoadingStates.Loading;
+    const isLoading = evolutionChainQueryResults.isLoading;
+    const isEmpty = !isLoading && data === undefined;
 
-    if (!isLoading && evolutionChain?.data === undefined) {
+    if (isEmpty) {
         return null;
     }
 
@@ -49,11 +50,11 @@ const EvolutionChain: React.FC<IEvolutionChainProps> = ({
                         containerClassName
                     )}
                 >
-                    <Evolution evolution={evolutionChain!.data!.chain} />
+                    <EvolutionChainView evolution={data!.chain} />
                 </div>
             )}
         </div>
     );
 };
 
-export default EvolutionChain;
+export default EvolutionChainsView;

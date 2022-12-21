@@ -1,12 +1,9 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import PokeballIcon from "../../assets/svg-components/PokeballIcon";
-import { LoadingStates } from "../../data/LoadingStates";
-import { useListPaginationState } from "../../utils/hooks/usePaginationState";
-import { makeRangeIterator } from "../../utils/Range";
-
-import { useListPokemonAPI } from "../../utils/requests/useAPI";
 import LoadingSpinner from "../StatusIndicators/LoadingSpinner";
 import ListCard from "./ListCard";
+import { useListPokemonQuery } from "./../../requests/pokemonList/hook";
+import { useListPaginationState } from "../../utils/hooks/usePaginationState";
 
 interface IListViewProps {}
 
@@ -31,32 +28,34 @@ const EmptyView = () => (
 );
 
 const ListView: React.FC<IListViewProps> = (props) => {
-    // const { page, limit } = useListPaginationState();
-    const page = 3;
-    const limit = 50;
+    const { page, limit } = useListPaginationState();
+    // const page = 3;
+    // const limit = 50;
 
-    const [listResource] = useListPokemonAPI({
+    const listQueryResult = useListPokemonQuery({
         limit,
         offset: page * limit,
     });
 
     const startIndex = page * limit + 1;
+    const data = listQueryResult.data;
 
-    const isEmpty = !listResource?.data;
-    const isLoading = listResource?.loadingState === LoadingStates.Loading;
+    const isError = listQueryResult.isError;
+    const isEmpty = listQueryResult.isFetched && data === undefined;
+    const isLoading = listQueryResult.isLoading;
 
     if (isLoading) {
         return <LoadingView />;
     }
 
-    if (isEmpty) {
+    if (isError || isEmpty) {
         return <EmptyView />;
     }
 
     return (
         <Fragment>
             <div className="flex flex-col md:grid md:grid-cols-4 md:gap-2 lg:gap-4">
-                {listResource.data?.results?.map((data, idx) => {
+                {data?.results?.map((data, idx) => {
                     const pokemonId = startIndex + idx;
 
                     return (

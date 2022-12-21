@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import ArrowRightIcon from "../../../assets/svg-components/ArrowRightIcon";
-import { IEvolutionChain } from "../../../utils/requests/evolutionChain/data";
+import { EvolutionChain } from "../../../requests/evolutionChain/data";
 import { getRoute } from "../../../router/getRoute";
 import { RouteNames } from "../../../router/RouteNames";
 import { getSpriteUrl } from "../../../utils/getSpriteUrl";
@@ -32,10 +32,10 @@ const Sprite: React.FC<{ name: string; speciesUrl: string }> = ({
 };
 
 interface IEvolutionProps {
-    evolution: IEvolutionChain;
+    evolution: EvolutionChain;
 }
 
-const Evolution: React.FC<IEvolutionProps> = ({ evolution }) => {
+const EvolutionView: React.FC<IEvolutionProps> = ({ evolution }) => {
     return (
         <div className="flex flex-col md:flex-row">
             <Sprite
@@ -90,11 +90,11 @@ const Evolution: React.FC<IEvolutionProps> = ({ evolution }) => {
                             )}
                             <ArrowRightIcon className="w-8 h-8 rotate-90 md:rotate-0" />
                         </div>
-                        <Evolution evolution={evo} />
+                        <EvolutionView evolution={evo} />
                     </div>
                 ))}
         </div>
     );
 };
 
-export default Evolution;
+export default EvolutionView;

@@ -1,12 +1,8 @@
 import React from "react";
-import { PokemonInferredType } from "../../data/InferredTypes";
-import { PokemonTypeNames } from "../../data/PokemonTypes/PokemonType";
+import { PokemonInferredType } from "../../requests/pokemon/data";
 import { IStyleableProps } from "../../utils/stylingUtils";
 import { combineClassnames } from "../../utils/stylingUtils";
-import {
-    getTypeAppropriateClassName,
-    TypeAppropriateColorClassNames,
-} from "../../colors/PokemonTypeColorClassNames";
+import { getPokemonTypeColorClassNames } from "./../../colors/getPokemonTypeColorClassNames";
 
 interface IPokemonTypesProps extends IStyleableProps {
     types?: PokemonInferredType["types"];
@@ -26,7 +22,7 @@ const PokemonTypes: React.FC<IPokemonTypesProps> = ({
             <p className="mb-2 text-sm">Type</p>
             <p>
                 {types.map(({ type }, idx) => {
-                    const typeStyles = getTypeAppropriateClassName(type.name);
+                    const typeStyles = getPokemonTypeColorClassNames(type.name);
 
                     return (
                         <span

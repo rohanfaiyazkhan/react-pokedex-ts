@@ -1,3 +1,3 @@
-import { ResourceKeys } from "./../../../contexts/NetworkCacheLayer/ResourceKeys";
+import { ResourceKeys } from "../ResourceKeys";
 
 export const EVOLUTION_CHAIN_RESOURCE_KEY = ResourceKeys.EvolutionChain;

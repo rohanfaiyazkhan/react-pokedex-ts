@@ -1,9 +1,8 @@
 import { PaginationInfo } from "../../data/PaginationInfo";
-import { useQuery } from "@tanstack/react-query/build/lib/useQuery";
 import { PokemonListInferredType } from "./data";
 import { PokemonListResourceKeyFactory } from "./key";
 import { makeListPokemonRequest } from "./request";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useListPokemonQuery(paginationInfo: PaginationInfo) {
     return useQuery({

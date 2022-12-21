@@ -3,7 +3,7 @@ import { IStyleableProps } from "../../utils/stylingUtils";
 import { MaxStatValues } from "./MaxStatValues";
 import { StatNames, StatReadableTexts } from "./StatNames";
 import "./slide.css";
-import { combineClassnames } from "./../../utils/stylingUtils";
+import { combineClassnames } from "../../utils/stylingUtils";
 
 function calculateTotalStats(stats: Stats[]) {
     let total = 0;
@@ -51,7 +51,7 @@ const StatBar: React.FC<{ baseStat: number; statName: string }> = ({
     );
 };
 
-const Stats: React.FC<StatsProps> = ({ stats, className, style }) => {
+const StatsView: React.FC<StatsProps> = ({ stats, className, style }) => {
     if (stats === undefined) {
         return null;
     }
@@ -89,4 +89,4 @@ const Stats: React.FC<StatsProps> = ({ stats, className, style }) => {
     );
 };
 
-export default Stats;
+export default StatsView;

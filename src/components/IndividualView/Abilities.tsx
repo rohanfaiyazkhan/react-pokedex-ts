@@ -1,5 +1,5 @@
 import React from "react";
-import { PokemonInferredType } from "../../data/InferredTypes";
+import { PokemonInferredType } from "../../requests/pokemon/data";
 import { IStyleableProps } from "../../utils/stylingUtils";
 
 interface IAbilitiesProps extends IStyleableProps {

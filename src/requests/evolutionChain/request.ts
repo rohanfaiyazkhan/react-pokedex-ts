@@ -1,10 +1,11 @@
-import { getSinglePokemonApiPath } from "../getApiRoute";
 import { apiRequest } from "../httpClient";
 import { EvolutionChainResponse } from "./data";
-import { EVOLUTION_CHAIN_RESOURCE_KEY } from "./key";
+import { ApiPaths } from "./../ApiPaths";
+import { AxiosRequestConfig } from "axios";
 
 export function makeEvolutionChainRequest(id: number) {
-    const path = getSinglePokemonApiPath(EVOLUTION_CHAIN_RESOURCE_KEY, id);
+    const path = ApiPaths.EvolutionChain;
+    const options: AxiosRequestConfig = { params: { id } };
 
-    return apiRequest<EvolutionChainResponse>(path.toString());
+    return apiRequest<EvolutionChainResponse>(path, options);
 }

@@ -6,9 +6,9 @@ import IndividualViewSpriteDisplay from "./IndividualViewSpriteDisplay";
 import { combineClassnames } from "../../utils/stylingUtils";
 import PokemonTypes from "./PokemonTypes";
 import Abilities from "./Abilities";
-import Stats from "../Stats/Stats";
+import StatsView from "../Stats/StatsView";
 import FlavorTexts from "./FlavorTexts";
-import EvolutionChain from "./EvolutionView/EvolutionChain";
+import EvolutionChainsView from "./EvolutionView/EvolutionChainsView";
 import Movesets from "./Moveset/Movesets";
 import { padToThreeDigits } from "../../utils/genericUtils";
 import { useIndividualPokemonQuery } from "./../../requests/pokemon/hook";
@@ -86,12 +86,12 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
                 className="col-span-1 col-start-4"
                 abilities={pokemonData?.abilities}
             />
-            <Stats
+            <StatsView
                 className="col-span-2 col-start-3 mt-4"
                 stats={pokemonData?.stats}
             />
             {speciesData?.evolution_chain.url && (
-                <EvolutionChain
+                <EvolutionChainsView
                     className="col-span-4 col-start-1"
                     containerClassName={
                         getPokemonTypeColorClassNames(primaryType)?.bg
