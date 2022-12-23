@@ -12,7 +12,7 @@ const BackToListView: React.FC = () => {
         <div className="flex items-center justify-start">
             <Link
                 to={RouteNames.Home}
-                className="bg-blue-900 rounded-lg transition-colors hover:bg-purple-900 px-2 lg:px-4 py-2 mb-2 lg:ml-8 flex items-center h-full text-lg text-red-100"
+                className="bg-red-900 rounded-lg transition-colors hover:bg-brown-900 px-2 lg:px-4 py-2 mb-2 lg:ml-4 flex items-center h-full text-lg text-red-100"
             >
                 <ArrowRightIcon className="rotate-180 w-6 h-6 mt-1 mr-2" />
                 <span className="text-sm lg:text-base">Back</span>
