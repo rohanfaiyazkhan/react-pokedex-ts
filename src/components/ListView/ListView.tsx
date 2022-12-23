@@ -71,8 +71,4 @@ const ListView: React.FC<IListViewProps> = (props) => {
     );
 };
 
-const ListViewWrapper: React.FC = () => {
-    return <ListView />;
-};
-
-export default ListViewWrapper;
+export default ListView;
