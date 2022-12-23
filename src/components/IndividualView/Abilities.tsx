@@ -1,17 +1,11 @@
 import React from "react";
 import { PokemonInferredType } from "../../requests/pokemon/data";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { StyleableProps } from "../../utils/styles/StyleableProps";
 
 type AbilitiesProps = StyleableProps & {
     abilities?: PokemonInferredType["abilities"];
 };
-
-function capitalizeFirstLetter(word: string) {
-    const firstLetter = word.charAt(0);
-    const restOfWord = word.slice(1);
-
-    return firstLetter.toUpperCase() + restOfWord;
-}
 
 const Abilities: React.FC<AbilitiesProps> = ({
     className,
