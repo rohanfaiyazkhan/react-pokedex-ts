@@ -14,6 +14,7 @@ import { padToThreeDigits } from "../../utils/genericUtils";
 import { useIndividualPokemonQuery } from "./../../requests/pokemon/hook";
 import { useIndividualPokemonSpeciesQuery } from "./../../requests/pokemonSpecies/hook";
 import { getPokemonTypeColorClassNames } from "./../../colors/getPokemonTypeColorClassNames";
+import { extractIdFromUrl } from "../../requests/extractIdFromUrl";
 
 interface IIndividualProps {}
 
@@ -64,6 +65,10 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
         getPokemonTypeColorClassNames(primaryType)?.bg
     );
 
+    const evolutionChainId = speciesData?.evolution_chain
+        ? extractIdFromUrl(speciesData.evolution_chain.url)
+        : undefined;
+
     return (
         <div className="flex flex-col space-y-4 md:space-y-0 md:grid md:grid-cols-4 md:gap-x-4 mt-8">
             <h1 className="text-lg mb-4 col-span-4 font-heading">
@@ -90,13 +95,13 @@ const IndividualView: React.FC<IIndividualProps> = (props) => {
                 className="col-span-2 col-start-3 mt-4"
                 stats={pokemonData?.stats}
             />
-            {speciesData?.evolution_chain.url && (
+            {evolutionChainId !== undefined && (
                 <EvolutionChainsView
                     className="col-span-4 col-start-1"
                     containerClassName={
                         getPokemonTypeColorClassNames(primaryType)?.bg
                     }
-                    evolutionChainUrl={speciesData?.evolution_chain.url}
+                    evolutionChainId={evolutionChainId}
                 />
             )}
             {pokemonData?.moves && <Movesets moves={pokemonData?.moves} />}
