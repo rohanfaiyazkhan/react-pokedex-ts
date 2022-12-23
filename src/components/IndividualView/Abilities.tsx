@@ -1,9 +1,16 @@
 import React from "react";
 import { PokemonInferredType } from "../../requests/pokemon/data";
-import { IStyleableProps } from "../../utils/stylingUtils";
+import { StyleableProps } from "../../utils/stylingUtils";
 
-interface IAbilitiesProps extends IStyleableProps {
+interface IAbilitiesProps extends StyleableProps {
     abilities?: PokemonInferredType["abilities"];
+}
+
+function capitalizeFirstLetter(word: string) {
+    const firstLetter = word.charAt(0);
+    const restOfWord = word.slice(1);
+
+    return firstLetter.toUpperCase() + restOfWord;
 }
 
 const Abilities: React.FC<IAbilitiesProps> = ({
@@ -21,7 +28,10 @@ const Abilities: React.FC<IAbilitiesProps> = ({
                     <li key={`ability-${ability.ability.name}-${idx}`}>
                         <span className="text-xs mr-2">{idx + 1}.</span>
                         <span className="capitalize">
-                            {ability.ability.name}
+                            {ability.ability.name
+                                .split("-")
+                                .map(capitalizeFirstLetter)
+                                .join(" ")}
                         </span>
                         {ability.is_hidden && (
                             <span className="ml-1 italic text-sm">
