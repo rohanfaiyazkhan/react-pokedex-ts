@@ -1,39 +1,30 @@
 import React from "react";
 import { MoveSet } from "../../../requests/moveset/data";
-import { IStyleableProps } from "../../../utils/stylingUtils";
+import { StyleableProps } from "../../../utils/stylingUtils";
 import { MoveLearnTypes } from "./MoveLearnTypes";
 import { splitMovesByLearnType } from "./splitMovesByLearnType";
 import { extractIdFromUrl } from "./../../../requests/extractIdFromUrl";
-import MoveView from "./MoveView";
-import { Grid, GridRow, GridColumnHeader } from "./AccessibleTableComponents";
+import MoveGridRow from "./MoveGridRow";
+import { Grid } from "./AccessibleTableComponents";
+import GridHeaderRow from "./GridHeaderRow";
+import { sortMovesByLearnLevel } from "./sortMovesByLearnLevel";
 
-interface IMovesetProps extends IStyleableProps {
+interface IMovesetProps extends StyleableProps {
     moves: MoveSet;
 }
 
-const Movesets: React.FC<{ moves: MoveSet; title: string }> = ({
-    title,
-    moves,
-}) => {
+const Movesets: React.FC<{
+    moves: MoveSet;
+    title: string;
+    hideLearnLevel?: boolean;
+}> = ({ title, moves, hideLearnLevel }) => {
     let rowCounter = 1;
 
     return (
         <>
-            <h4 className="font-heading mb-1">{title}</h4>
-            <Grid>
-                <GridRow rowIndex={1}>
-                    <GridColumnHeader colIndex={1}>Name</GridColumnHeader>
-                    <GridColumnHeader colIndex={2}>
-                        Description
-                    </GridColumnHeader>
-                    <GridColumnHeader colIndex={3}>Learn Type</GridColumnHeader>
-                    <GridColumnHeader colIndex={4}>
-                        Level Learned
-                    </GridColumnHeader>
-                    <GridColumnHeader colIndex={5}>Power</GridColumnHeader>
-                    <GridColumnHeader colIndex={6}>Accuracy</GridColumnHeader>
-                    <GridColumnHeader colIndex={7}>PP</GridColumnHeader>
-                </GridRow>
+            <h4 className="font-heading text-lg mb-1">{title}</h4>
+            <Grid className="overflow-x-auto mb-4">
+                <GridHeaderRow hideLearnLevel={hideLearnLevel} />
 
                 {moves.map((move) => {
                     const id = extractIdFromUrl(move.move.url);
@@ -44,7 +35,14 @@ const Movesets: React.FC<{ moves: MoveSet; title: string }> = ({
 
                     rowCounter += 1;
 
-                    return <MoveView id={id} move={move} rowId={rowCounter} />;
+                    return (
+                        <MoveGridRow
+                            id={id}
+                            move={move}
+                            rowId={rowCounter}
+                            hideLearnLevel={hideLearnLevel}
+                        />
+                    );
                 })}
             </Grid>
         </>
@@ -52,10 +50,14 @@ const Movesets: React.FC<{ moves: MoveSet; title: string }> = ({
 };
 
 const MovesetsWrapper: React.FC<IMovesetProps> = ({ moves }) => {
-    const splitMoves = splitMovesByLearnType(moves);
+    const sortedMoves = sortMovesByLearnLevel(moves);
+    const splitMoves = splitMovesByLearnType(sortedMoves);
+
     return (
-        <div>
-            <h3 className="font-bold font-heading text-xl mb-1">Movesets</h3>
+        <div className="col-span-4">
+            <h3 className="font-bold font-heading text-xl mb-1 mt-4">
+                Movesets
+            </h3>
             <Movesets
                 title={"Learn by Level Up"}
                 moves={[
@@ -66,6 +68,7 @@ const MovesetsWrapper: React.FC<IMovesetProps> = ({ moves }) => {
             <Movesets
                 title={"Learn by TM/HM"}
                 moves={[...splitMoves[MoveLearnTypes.Machine]]}
+                hideLearnLevel
             />
         </div>
     );
