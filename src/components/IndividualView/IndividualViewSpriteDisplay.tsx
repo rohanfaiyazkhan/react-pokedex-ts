@@ -1,8 +1,8 @@
 import React from "react";
-import { combineClassnames, IStyleableProps } from "../../utils/stylingUtils";
+import { combineClassnames, StyleableProps } from "../../utils/stylingUtils";
 import { getSpriteUrl } from "../../utils/getSpriteUrl";
 
-interface IIndividualViewSpriteDisplayProps extends IStyleableProps {
+interface IIndividualViewSpriteDisplayProps extends StyleableProps {
     pokemonId: number;
     pokemonName?: string;
 }

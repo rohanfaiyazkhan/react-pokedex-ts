@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { PokemonType } from "../../data/PokemonTypes/PokemonType";
-import { combineClassnames, IStyleableProps } from "../../utils/stylingUtils";
+import { combineClassnames, StyleableProps } from "../../utils/stylingUtils";
 
-interface ITypeIndicatorsProps extends IStyleableProps {
+interface ITypeIndicatorsProps extends StyleableProps {
     types: PokemonType[];
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { IStyleableProps } from "../../utils/stylingUtils";
+import { StyleableProps } from "../../utils/stylingUtils";
 
 interface IFlavorText {
     flavor_text: string;
@@ -18,7 +18,7 @@ interface IFlavorTextDisplayInfo {
     versions: string[];
 }
 
-interface IFlavorTextsProps extends IStyleableProps {
+interface IFlavorTextsProps extends StyleableProps {
     flavorTexts?: IFlavorText[];
 }
 

@@ -20,7 +20,7 @@ export function combineClassnames(
     return output.join(" ");
 }
 
-export interface IStyleableProps {
+export type StyleableProps = {
     className?: string;
     style?: CSSProperties;
-}
+};

@@ -1,8 +1,8 @@
 import React from "react";
 import PokeballIcon from "../../assets/svg-components/PokeballIcon";
-import { IStyleableProps } from "../../utils/stylingUtils";
+import { StyleableProps } from "../../utils/stylingUtils";
 
-interface ILoadingSpinnerProps extends IStyleableProps {}
+interface ILoadingSpinnerProps extends StyleableProps {}
 
 const LoadingSpinner: React.FC<ILoadingSpinnerProps> = ({
     className,

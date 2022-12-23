@@ -1,11 +1,11 @@
 import React from "react";
-import { IStyleableProps } from "../../../utils/stylingUtils";
+import { StyleableProps } from "../../../utils/stylingUtils";
 import LoadingSpinner from "../../StatusIndicators/LoadingSpinner";
 import { combineClassnames } from "../../../utils/stylingUtils";
 import EvolutionChainView from "./EvolutionChainView";
 import { useEvolutionChainQuery } from "../../../requests/evolutionChain/hook";
 
-interface IEvolutionChainProps extends IStyleableProps {
+interface IEvolutionChainProps extends StyleableProps {
     evolutionChainId: number;
     containerClassName?: string;
 }

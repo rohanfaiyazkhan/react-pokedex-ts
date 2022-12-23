@@ -1,5 +1,5 @@
 import { Stats } from "../../data/Stats";
-import { IStyleableProps } from "../../utils/stylingUtils";
+import { StyleableProps } from "../../utils/stylingUtils";
 import { MaxStatValues } from "./MaxStatValues";
 import { StatNames, StatReadableTexts } from "./StatNames";
 import "./slide.css";
@@ -15,7 +15,7 @@ function calculateTotalStats(stats: Stats[]) {
     return total;
 }
 
-interface StatsProps extends IStyleableProps {
+interface StatsProps extends StyleableProps {
     stats?: Stats[];
 }
 

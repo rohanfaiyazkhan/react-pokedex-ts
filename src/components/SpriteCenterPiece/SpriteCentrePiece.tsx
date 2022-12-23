@@ -1,9 +1,9 @@
 import React from "react";
-import { IStyleableProps } from "../../utils/stylingUtils";
+import { StyleableProps } from "../../utils/stylingUtils";
 import { getSpriteUrl } from "../../utils/getSpriteUrl";
 import { combineClassnames } from "../../utils/stylingUtils";
 
-interface ISpriteCentrePieceProps extends IStyleableProps {
+interface ISpriteCentrePieceProps extends StyleableProps {
     pokemonId: number;
     pokemonName?: string;
 }
