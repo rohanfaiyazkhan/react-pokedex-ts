@@ -1,6 +1,6 @@
 import React from "react";
 import PokeballIcon from "../../assets/svg-components/PokeballIcon";
-import { StyleableProps } from "../../utils/stylingUtils";
+import { StyleableProps } from "../../utils/styles/StyleableProps";
 
 interface ILoadingSpinnerProps extends StyleableProps {}
 

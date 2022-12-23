@@ -1,5 +1,6 @@
 import { PropsWithChildren, FC } from "react";
-import { combineClassnames, StyleableProps } from "../../../utils/stylingUtils";
+import { StyleableProps } from "../../../utils/styles/StyleableProps";
+import { combineClassnames } from "../../../utils/styles/combineClassnames";
 
 function getStyleProps<
     P extends StyleableProps = PropsWithChildren<StyleableProps>

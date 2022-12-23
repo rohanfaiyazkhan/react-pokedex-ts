@@ -1,5 +1,3 @@
-import { CSSProperties } from "react";
-
 export function combineClassnames(
     ...inputs: Array<string | Record<string, boolean> | undefined>
 ) {
@@ -19,8 +17,3 @@ export function combineClassnames(
 
     return output.join(" ");
 }
-
-export type StyleableProps = {
-    className?: string;
-    style?: CSSProperties;
-};

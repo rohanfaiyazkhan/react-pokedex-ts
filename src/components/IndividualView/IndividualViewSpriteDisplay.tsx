@@ -1,5 +1,6 @@
 import React from "react";
-import { combineClassnames, StyleableProps } from "../../utils/stylingUtils";
+import { StyleableProps } from "../../utils/styles/StyleableProps";
+import { combineClassnames } from "../../utils/styles/combineClassnames";
 import { getSpriteUrl } from "../../utils/getSpriteUrl";
 
 interface IIndividualViewSpriteDisplayProps extends StyleableProps {

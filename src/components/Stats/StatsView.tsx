@@ -1,9 +1,9 @@
 import { Stats } from "../../data/Stats";
-import { StyleableProps } from "../../utils/stylingUtils";
+import { StyleableProps } from "../../utils/styles/StyleableProps";
 import { MaxStatValues } from "./MaxStatValues";
 import { StatNames, StatReadableTexts } from "./StatNames";
 import "./slide.css";
-import { combineClassnames } from "../../utils/stylingUtils";
+import { combineClassnames } from "../../utils/styles/combineClassnames";
 
 function calculateTotalStats(stats: Stats[]) {
     let total = 0;

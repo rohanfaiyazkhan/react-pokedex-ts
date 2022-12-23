@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SpriteCentrePiece from "./../SpriteCenterPiece/SpriteCentrePiece";
 import { generatePath } from "react-router";
-import { combineClassnames } from "../../utils/stylingUtils";
+import { combineClassnames } from "../../utils/styles/combineClassnames";
 
 interface IListCardProps {
     pokemonId: number;

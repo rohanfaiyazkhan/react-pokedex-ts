@@ -1,6 +1,6 @@
 import React from "react";
 import { MoveSet } from "../../../requests/moveset/data";
-import { StyleableProps } from "../../../utils/stylingUtils";
+import { StyleableProps } from "../../../utils/styles/StyleableProps";
 import { MoveLearnTypes } from "./MoveLearnTypes";
 import { splitMovesByLearnType } from "./splitMovesByLearnType";
 import { extractIdFromUrl } from "./../../../requests/extractIdFromUrl";
