@@ -9,9 +9,9 @@ import { Grid } from "./AccessibleTableComponents";
 import GridHeaderRow from "./GridHeaderRow";
 import { sortMovesByLearnLevel } from "./sortMovesByLearnLevel";
 
-interface IMovesetProps extends StyleableProps {
+type MovesetProps = StyleableProps & {
     moves: MoveSet;
-}
+};
 
 const Movesets: React.FC<{
     moves: MoveSet;
@@ -49,7 +49,7 @@ const Movesets: React.FC<{
     );
 };
 
-const MovesetsWrapper: React.FC<IMovesetProps> = ({ moves }) => {
+const MovesetsWrapper: React.FC<MovesetProps> = ({ moves }) => {
     const sortedMoves = sortMovesByLearnLevel(moves);
     const splitMoves = splitMovesByLearnType(sortedMoves);
 

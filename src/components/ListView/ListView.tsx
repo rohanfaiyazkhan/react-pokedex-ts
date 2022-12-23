@@ -5,8 +5,6 @@ import ListCard from "./ListCard";
 import { useListPokemonQuery } from "./../../requests/pokemonList/hook";
 import { useListPaginationState } from "../../utils/hooks/usePaginationState";
 
-interface IListViewProps {}
-
 const LoadingView = () => (
     <div className="h-full w-full flex items-center justify-center">
         <p className="flex items-center justify-center">
@@ -27,7 +25,7 @@ const EmptyView = () => (
     </div>
 );
 
-const ListView: React.FC<IListViewProps> = (props) => {
+const ListView: React.FC = (props) => {
     const { page, limit } = useListPaginationState();
     // const page = 3;
     // const limit = 50;

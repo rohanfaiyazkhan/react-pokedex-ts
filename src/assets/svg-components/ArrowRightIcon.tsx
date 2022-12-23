@@ -1,8 +1,8 @@
 import React, { SVGProps } from "react";
 
-interface IArrowRightIconProps extends SVGProps<SVGSVGElement> {}
+type ArrowRghtIconProps = SVGProps<SVGSVGElement> & {};
 
-const ArrowRightIcon: React.FC<IArrowRightIconProps> = (props) => {
+const ArrowRightIcon: React.FC<ArrowRghtIconProps> = (props) => {
     return (
         <svg {...props}>
             <path

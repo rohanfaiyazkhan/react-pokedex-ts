@@ -3,13 +3,13 @@ import { StyleableProps } from "../../utils/styles/StyleableProps";
 import { combineClassnames } from "../../utils/styles/combineClassnames";
 import { getSpriteUrl } from "../../utils/getSpriteUrl";
 
-interface IIndividualViewSpriteDisplayProps extends StyleableProps {
+type IndividualViewSpriteDisplayProps = StyleableProps & {
     pokemonId: number;
     pokemonName?: string;
-}
+};
 
 const IndividualViewSpriteDisplay: React.FC<
-    IIndividualViewSpriteDisplayProps
+    IndividualViewSpriteDisplayProps
 > = ({ pokemonId, className, pokemonName, style }) => {
     const frontSpriteUrl = getSpriteUrl(pokemonId, {
         facing: "front",

@@ -5,9 +5,9 @@ import IndividualView from "./../components/IndividualView/IndividualView";
 import HeaderBar from "../components/HeaderBar/HeaderBar";
 import { RouteNames } from "./RouteNames";
 
-interface IRouterProps extends React.PropsWithChildren {}
+type RouterProps = React.PropsWithChildren;
 
-const AppRouter: React.FC<IRouterProps> = (props) => {
+const AppRouter: React.FC<RouterProps> = (props) => {
     return (
         <div className="transition-colors duration-300">
             <HeaderBar />

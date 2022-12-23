@@ -3,12 +3,12 @@ import { StyleableProps } from "../../utils/styles/StyleableProps";
 import { getSpriteUrl } from "../../utils/getSpriteUrl";
 import { combineClassnames } from "../../utils/styles/combineClassnames";
 
-interface ISpriteCentrePieceProps extends StyleableProps {
+type SpriteCentrePieceProps = StyleableProps & {
     pokemonId: number;
     pokemonName?: string;
-}
+};
 
-const SpriteCentrePiece: React.FC<ISpriteCentrePieceProps> = ({
+const SpriteCentrePiece: React.FC<SpriteCentrePieceProps> = ({
     pokemonId,
     className,
     style,

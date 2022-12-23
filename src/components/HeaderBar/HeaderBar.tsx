@@ -5,8 +5,6 @@ import ArrowRightIcon from "../../assets/svg-components/ArrowRightIcon";
 import { RouteNames } from "../../router/RouteNames";
 import { useScrollToTopOnRouteChange } from "../../utils/hooks/useScrollToTopOnRouteChange";
 
-interface IHeaderBarProps {}
-
 const BackToListView: React.FC = () => {
     return (
         <div className="flex items-center justify-start">
@@ -21,7 +19,7 @@ const BackToListView: React.FC = () => {
     );
 };
 
-const HeaderBar: React.FC<IHeaderBarProps> = (props) => {
+const HeaderBar: React.FC = (props) => {
     useScrollToTopOnRouteChange();
     const isIndividualView = useMatch("/view/:id");
 

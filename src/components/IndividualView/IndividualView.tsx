@@ -16,8 +16,6 @@ import { useIndividualPokemonSpeciesQuery } from "./../../requests/pokemonSpecie
 import { getPokemonTypeColorClassNames } from "./../../colors/getPokemonTypeColorClassNames";
 import { extractIdFromUrl } from "../../requests/extractIdFromUrl";
 
-interface IIndividualProps {}
-
 const LoadingView: React.FC<{ pokemonName?: string; pokemonId: number }> = (
     props
 ) => {
@@ -35,7 +33,7 @@ const LoadingView: React.FC<{ pokemonName?: string; pokemonId: number }> = (
     );
 };
 
-const IndividualView: React.FC<IIndividualProps> = (props) => {
+const IndividualView: React.FC = (props) => {
     const { id: idAsString } = useParams<{ id: string | undefined }>();
 
     const id = Number(idAsString);

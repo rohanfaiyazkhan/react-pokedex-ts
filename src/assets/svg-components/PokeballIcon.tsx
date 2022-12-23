@@ -1,8 +1,8 @@
 import React, { SVGProps } from "react";
 
-interface IPokeballIconProps extends SVGProps<SVGSVGElement> {}
+type PokeballconProps = SVGProps<SVGSVGElement> & {};
 
-const PokeballIcon: React.FC<IPokeballIconProps> = (props) => {
+const PokeballIcon: React.FC<PokeballconProps> = (props) => {
     return (
         <svg viewBox="0 0 511.985 511.985" {...props}>
             <path

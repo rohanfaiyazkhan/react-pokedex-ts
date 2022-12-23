@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleableProps } from "../../utils/styles/StyleableProps";
 
-interface IFlavorText {
+type FlavorText = {
     flavor_text: string;
     language: {
         name: string;
@@ -11,23 +11,23 @@ interface IFlavorText {
         name: string;
         url: string;
     };
-}
+};
 
-interface IFlavorTextDisplayInfo {
+type FlavorTextDisplayInfo = {
     flavor_text: string;
     versions: string[];
-}
+};
 
-interface IFlavorTextsProps extends StyleableProps {
-    flavorTexts?: IFlavorText[];
-}
+type FlavorTextsProps = StyleableProps & {
+    flavorTexts?: FlavorText[];
+};
 
-function getGroupedFlavorTexts(flavorTexts: IFlavorText[]) {
-    let result: IFlavorTextDisplayInfo[] = [];
+function getGroupedFlavorTexts(flavorTexts: FlavorText[]) {
+    let result: FlavorTextDisplayInfo[] = [];
     let i = 0;
 
     while (i < flavorTexts.length) {
-        const currentFlavorTextDisplay: Partial<IFlavorTextDisplayInfo> = {};
+        const currentFlavorTextDisplay: Partial<FlavorTextDisplayInfo> = {};
 
         currentFlavorTextDisplay.flavor_text = flavorTexts[i].flavor_text;
         currentFlavorTextDisplay.versions = [flavorTexts[i].version.name];
@@ -41,14 +41,14 @@ function getGroupedFlavorTexts(flavorTexts: IFlavorText[]) {
             currentFlavorTextDisplay.versions.push(flavorTexts[i].version.name);
         }
 
-        result.push(currentFlavorTextDisplay as IFlavorTextDisplayInfo);
+        result.push(currentFlavorTextDisplay as FlavorTextDisplayInfo);
         i += 1;
     }
 
     return result;
 }
 
-const FlavorTexts: React.FC<IFlavorTextsProps> = ({
+const FlavorTexts: React.FC<FlavorTextsProps> = ({
     flavorTexts,
     className,
     style,

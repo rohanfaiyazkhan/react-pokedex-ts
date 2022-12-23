@@ -2,11 +2,11 @@ import React from "react";
 import { GridRow, GridColumnHeader } from "./AccessibleTableComponents";
 import { getColumnIterator } from "./columnIterator";
 
-interface IGridHeaderRowProps {
+type GridHeaderRowProps = {
     hideLearnLevel?: boolean;
-}
+};
 
-const GridHeaderRow: React.FC<IGridHeaderRowProps> = ({ hideLearnLevel }) => {
+const GridHeaderRow: React.FC<GridHeaderRowProps> = ({ hideLearnLevel }) => {
     const columnIterator = getColumnIterator(1);
 
     return (

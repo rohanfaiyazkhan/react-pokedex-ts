@@ -4,11 +4,11 @@ import { StyleableProps } from "../../utils/styles/StyleableProps";
 import { combineClassnames } from "../../utils/styles/combineClassnames";
 import { getPokemonTypeColorClassNames } from "./../../colors/getPokemonTypeColorClassNames";
 
-interface IPokemonTypesProps extends StyleableProps {
+type PokemonTypesProps = StyleableProps & {
     types?: PokemonInferredType["types"];
-}
+};
 
-const PokemonTypes: React.FC<IPokemonTypesProps> = ({
+const PokemonTypes: React.FC<PokemonTypesProps> = ({
     types,
     className,
     style,

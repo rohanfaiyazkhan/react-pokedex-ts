@@ -31,11 +31,11 @@ const Sprite: React.FC<{ name: string; speciesUrl: string }> = ({
     );
 };
 
-interface IEvolutionProps {
+type EvolutionProps = {
     evolution: EvolutionChain;
-}
+};
 
-const EvolutionView: React.FC<IEvolutionProps> = ({ evolution }) => {
+const EvolutionView: React.FC<EvolutionProps> = ({ evolution }) => {
     return (
         <div className="flex flex-col md:flex-row">
             <Sprite

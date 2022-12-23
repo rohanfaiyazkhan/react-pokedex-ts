@@ -5,12 +5,12 @@ import { combineClassnames } from "../../../utils/styles/combineClassnames";
 import EvolutionChainView from "./EvolutionChainView";
 import { useEvolutionChainQuery } from "../../../requests/evolutionChain/hook";
 
-interface IEvolutionChainProps extends StyleableProps {
+type EvolutionChainProps = StyleableProps & {
     evolutionChainId: number;
     containerClassName?: string;
-}
+};
 
-const EvolutionChainsView: React.FC<IEvolutionChainProps> = ({
+const EvolutionChainsView: React.FC<EvolutionChainProps> = ({
     evolutionChainId,
     className,
     style,

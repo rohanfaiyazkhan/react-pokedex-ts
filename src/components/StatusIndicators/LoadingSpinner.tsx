@@ -2,9 +2,9 @@ import React from "react";
 import PokeballIcon from "../../assets/svg-components/PokeballIcon";
 import { StyleableProps } from "../../utils/styles/StyleableProps";
 
-interface ILoadingSpinnerProps extends StyleableProps {}
+type LoadingSpinnerProps = StyleableProps;
 
-const LoadingSpinner: React.FC<ILoadingSpinnerProps> = ({
+const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
     className,
     style,
 }) => {

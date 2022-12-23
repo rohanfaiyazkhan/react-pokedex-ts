@@ -11,8 +11,8 @@ function getStyleProps<
     };
 }
 
-type GridRowProps = StyleableProps & { rowIndex: number };
-type GridColProps = StyleableProps & { colIndex: number };
+type GrdRowProps = StyleableProps & { rowIndex: number };
+type GrdColProps = StyleableProps & { colIndex: number };
 
 export const Grid: FC<PropsWithChildren<StyleableProps>> = (props) => (
     <div
@@ -23,7 +23,7 @@ export const Grid: FC<PropsWithChildren<StyleableProps>> = (props) => (
     </div>
 );
 
-export const GridRow: FC<PropsWithChildren<GridRowProps>> = (props) => (
+export const GridRow: FC<PropsWithChildren<GrdRowProps>> = (props) => (
     <div
         role="row"
         aria-rowindex={props.rowIndex}
@@ -36,9 +36,7 @@ export const GridRow: FC<PropsWithChildren<GridRowProps>> = (props) => (
     </div>
 );
 
-export const GridColumnHeader: FC<PropsWithChildren<GridColProps>> = (
-    props
-) => (
+export const GridColumnHeader: FC<PropsWithChildren<GrdColProps>> = (props) => (
     <div
         role="columnheader"
         aria-colindex={props.colIndex}
@@ -51,7 +49,7 @@ export const GridColumnHeader: FC<PropsWithChildren<GridColProps>> = (
     </div>
 );
 
-export const GridCell: FC<PropsWithChildren<GridColProps>> = (props) => (
+export const GridCell: FC<PropsWithChildren<GrdColProps>> = (props) => (
     <div
         role="gridcell"
         aria-colindex={props.colIndex}

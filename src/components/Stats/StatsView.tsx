@@ -15,9 +15,9 @@ function calculateTotalStats(stats: Stats[]) {
     return total;
 }
 
-interface StatsProps extends StyleableProps {
+type StatsProps = StyleableProps & {
     stats?: Stats[];
-}
+};
 
 const StatBar: React.FC<{ baseStat: number; statName: string }> = ({
     baseStat,

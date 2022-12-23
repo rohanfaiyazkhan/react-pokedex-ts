@@ -3,9 +3,9 @@ import { PokemonType } from "../../data/PokemonTypes/PokemonType";
 import { StyleableProps } from "../../utils/styles/StyleableProps";
 import { combineClassnames } from "../../utils/styles/combineClassnames";
 
-interface ITypeIndicatorsProps extends StyleableProps {
+type TypeIndicatorsProps = StyleableProps & {
     types: PokemonType[];
-}
+};
 
 const TypeIndicator: React.FC<React.PropsWithChildren> = ({ children }) => (
     <div className="bg-gray-200 border-2 border-red-800 shadow-lg font-lg px-4 py-1 rounded">
@@ -13,7 +13,7 @@ const TypeIndicator: React.FC<React.PropsWithChildren> = ({ children }) => (
     </div>
 );
 
-const TypeIndicators: React.FC<ITypeIndicatorsProps> = ({
+const TypeIndicators: React.FC<TypeIndicatorsProps> = ({
     types,
     className,
 }) => {

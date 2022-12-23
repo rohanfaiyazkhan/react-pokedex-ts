@@ -4,14 +4,14 @@ import { useMoveQuery } from "../../../requests/moveset/hook";
 import { GridCell, GridRow } from "./AccessibleTableComponents";
 import { getColumnIterator } from "./columnIterator";
 
-interface IMoveProps {
+type MoveProps = {
     id: number;
     move: MoveSet[number];
     rowId: number;
     hideLearnLevel?: boolean;
-}
+};
 
-const MoveGridRow: React.FC<IMoveProps> = ({
+const MoveGridRow: React.FC<MoveProps> = ({
     id,
     move,
     rowId,

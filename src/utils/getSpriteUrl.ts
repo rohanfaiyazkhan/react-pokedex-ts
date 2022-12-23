@@ -1,9 +1,9 @@
-export interface IISpriteUrlConfig {
+export type SpriteUrlConfig = {
     facing?: "front" | "back"; // defaults to front
     shiny?: boolean; // defaults to false
-}
+};
 
-export function getSpriteUrl(id: number, config?: IISpriteUrlConfig) {
+export function getSpriteUrl(id: number, config?: SpriteUrlConfig) {
     const baseUrl = new URL(
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon"
     );
