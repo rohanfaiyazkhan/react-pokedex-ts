@@ -1,84 +1,53 @@
 import React from "react";
+import { MoveSet } from "../../../requests/moveset/data";
+import { IStyleableProps } from "../../../utils/stylingUtils";
 import { MoveLearnTypes } from "./MoveLearnTypes";
+import { splitMovesByLearnType } from "./splitMovesByLearnType";
+import { extractIdFromUrl } from "./../../../requests/extractIdFromUrl";
+import MoveView from "./MoveView";
+import { Grid, GridRow, GridColumnHeader } from "./AccessibleTableComponents";
 
-interface IMove {
-    move: {
-        name: string;
-        url: string;
-    };
-    version_group_details: Array<{
-        level_learned_at: number;
-        move_learn_method: {
-            name: string;
-            url: string;
-        };
-        version_group: {
-            name: string;
-            url: string;
-        };
-    }>;
+interface IMovesetProps extends IStyleableProps {
+    moves: MoveSet;
 }
 
-interface IMovesetProps {
-    moves: IMove[];
-}
-
-function splitMovesByLearnType(moves: IMove[]) {
-    const splitMoves: Record<MoveLearnTypes, IMove[]> = {
-        [MoveLearnTypes.Egg]: [],
-        [MoveLearnTypes.Machine]: [],
-        [MoveLearnTypes.Tutor]: [],
-        [MoveLearnTypes.LevelUp]: [],
-    };
-
-    for (const move of moves) {
-        const lastVersionsMoveLearnDetail =
-            move.version_group_details[move.version_group_details.length - 1];
-        const moveLearnType =
-            lastVersionsMoveLearnDetail.move_learn_method.name;
-
-        if (
-            !Object.values(MoveLearnTypes).includes(
-                moveLearnType as MoveLearnTypes
-            )
-        ) {
-            console.warn(
-                `Unexpected moveLearnType ${moveLearnType}, expected one of ${Object.values(
-                    MoveLearnTypes
-                ).join(", ")}`
-            );
-            continue;
-        }
-
-        splitMoves[moveLearnType as MoveLearnTypes].push(move);
-    }
-
-    return splitMoves;
-}
-
-const Movesets: React.FC<{ moves: IMove[]; title: string }> = ({
+const Movesets: React.FC<{ moves: MoveSet; title: string }> = ({
     title,
     moves,
 }) => {
-    return (
-        <div>
-            <p>{title}</p>
-            <ul>
-                {moves.map((move) => {
-                    const lastVersionMoveDetails =
-                        move.version_group_details[
-                            move.version_group_details.length - 1
-                        ];
+    let rowCounter = 1;
 
-                    return (
-                        <li key={move.move.name}>
-                            {move.move.name} -{" "}
-                            {lastVersionMoveDetails.level_learned_at}
-                        </li>
-                    );
+    return (
+        <>
+            <h4 className="font-heading mb-1">{title}</h4>
+            <Grid>
+                <GridRow rowIndex={1}>
+                    <GridColumnHeader colIndex={1}>Name</GridColumnHeader>
+                    <GridColumnHeader colIndex={2}>
+                        Description
+                    </GridColumnHeader>
+                    <GridColumnHeader colIndex={3}>Learn Type</GridColumnHeader>
+                    <GridColumnHeader colIndex={4}>
+                        Level Learned
+                    </GridColumnHeader>
+                    <GridColumnHeader colIndex={5}>Power</GridColumnHeader>
+                    <GridColumnHeader colIndex={6}>Accuracy</GridColumnHeader>
+                    <GridColumnHeader colIndex={7}>PP</GridColumnHeader>
+                </GridRow>
+
+                {moves.map((move) => {
+                    const id = extractIdFromUrl(move.move.url);
+
+                    if (id === undefined) {
+                        return null;
+                    }
+
+                    rowCounter += 1;
+
+                    return <MoveView id={id} move={move} rowId={rowCounter} />;
                 })}
-            </ul>
-        </div>
+            </Grid>
+        </>
     );
 };
 
@@ -86,7 +55,7 @@ const MovesetsWrapper: React.FC<IMovesetProps> = ({ moves }) => {
     const splitMoves = splitMovesByLearnType(moves);
     return (
         <div>
-            <p>Movesets</p>
+            <h3 className="font-bold font-heading text-xl mb-1">Movesets</h3>
             <Movesets
                 title={"Learn by Level Up"}
                 moves={[
@@ -96,10 +65,7 @@ const MovesetsWrapper: React.FC<IMovesetProps> = ({ moves }) => {
             />
             <Movesets
                 title={"Learn by TM/HM"}
-                moves={[
-                    ...splitMoves[MoveLearnTypes.Egg],
-                    ...splitMoves[MoveLearnTypes.LevelUp],
-                ]}
+                moves={[...splitMoves[MoveLearnTypes.Machine]]}
             />
         </div>
     );
