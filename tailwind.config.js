@@ -5,7 +5,7 @@ module.exports = {
     content: [
         "./src/**/*.{jsx,tsx}",
         "./public/index.html",
-        "./src/components/SpriteCenterPiece/TypeAppropriateBackgroundColors.ts",
+        "./src/colors/PokemonTypeColorClassNames.ts",
     ],
     presets: [],
     darkMode: "media", // or 'class'

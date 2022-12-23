@@ -23,7 +23,7 @@ export const PokemonTypeColorClassNames = {
     } as const,
     [PokemonTypeNames.Electric]: {
         text: "text-gray-900",
-        bg: "bg-yellow-300",
+        bg: "bg-yellow-100",
     } as const,
     [PokemonTypeNames.Ice]: {
         text: "text-gray-900",
