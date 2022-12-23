@@ -33,7 +33,7 @@ const SpriteCentrePiece: React.FC<ISpriteCentrePieceProps> = ({
                     minHeight: 80,
                 }}
                 src={spriteUrl.toString()}
-                alt={"Sprite of pokemon " + pokemonName}
+                alt={"Sprite of pokemon " + (pokemonName ?? pokemonId)}
             />
         </div>
     );
