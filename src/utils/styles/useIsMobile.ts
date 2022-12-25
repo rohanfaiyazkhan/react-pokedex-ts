@@ -7,11 +7,16 @@ function isLessThanBreakpoint(width: number, breakpoint: BreakpointNames) {
     return width < breakpointWidth;
 }
 
-export function useIsMobile(breakpoint: BreakpointNames) {
+/**
+ * Hook that returns whether window is below a certain breakpoint, e.g. "SM" will return true if window is below 512px
+ * @param breakpoint
+ * @returns
+ */
+export function useIsMobile(mobileBreakpoint: BreakpointNames) {
     const currentScreenWidth = window.innerWidth;
     const initiallyIsMobile = isLessThanBreakpoint(
         currentScreenWidth,
-        breakpoint
+        mobileBreakpoint
     );
 
     const [isMobile, setIsMobile] = useState(initiallyIsMobile);
@@ -21,7 +26,7 @@ export function useIsMobile(breakpoint: BreakpointNames) {
             const currentScreenWidth = window.innerWidth;
             const newResult = isLessThanBreakpoint(
                 currentScreenWidth,
-                breakpoint
+                mobileBreakpoint
             );
 
             if (isMobile !== newResult) {
@@ -34,7 +39,7 @@ export function useIsMobile(breakpoint: BreakpointNames) {
         return function unsubscribe() {
             window.removeEventListener("resize", listener);
         };
-    }, [breakpoint, isMobile]);
+    }, [mobileBreakpoint, isMobile]);
 
     return isMobile;
 }
