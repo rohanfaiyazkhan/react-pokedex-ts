@@ -15,6 +15,7 @@ import { useIndividualPokemonQuery } from "./../../requests/pokemon/hook";
 import { useIndividualPokemonSpeciesQuery } from "./../../requests/pokemonSpecies/hook";
 import { getPokemonTypeColorClassNames } from "./../../colors/getPokemonTypeColorClassNames";
 import { extractIdFromUrl } from "../../requests/extractIdFromUrl";
+import NextAndPrevious from "./NextAndPrevious";
 
 const LoadingView: React.FC<{ pokemonName?: string; pokemonId: number }> = (
     props
@@ -66,6 +67,7 @@ const IndividualView: React.FC = (props) => {
 
     return (
         <div className="flex flex-col space-y-4 md:space-y-0 md:grid md:grid-cols-4 md:gap-x-4 mt-8">
+            <NextAndPrevious currentIndex={id} />
             <h1 className="text-lg mb-4 col-span-4 font-heading">
                 {padToThreeDigits(id)}.{" "}
                 <span className="capitalize font-bold text-2xl">
