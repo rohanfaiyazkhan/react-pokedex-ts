@@ -58,10 +58,7 @@ const IndividualView: React.FC = (props) => {
     const pokemonName = pokemonData?.name;
 
     const primaryType = pokemonData?.types?.[0]?.type?.name;
-    let spriteContainerClassNames = combineClassnames(
-        "border-2 border-gray-400 rounded shadow-inner col-span-2 row-span-3 col-start-1",
-        getPokemonTypeColorClassNames(primaryType)?.bg
-    );
+    let spriteContainerClassNames = "col-span-2 row-span-3 col-start-1";
 
     const evolutionChainId = speciesData?.evolution_chain
         ? extractIdFromUrl(speciesData.evolution_chain.url)
@@ -96,9 +93,10 @@ const IndividualView: React.FC = (props) => {
             {evolutionChainId !== undefined && (
                 <EvolutionChainsView
                     className="col-span-4 col-start-1"
-                    containerClassName={
-                        getPokemonTypeColorClassNames(primaryType)?.bg
-                    }
+                    containerClassName={combineClassnames(
+                        getPokemonTypeColorClassNames(primaryType)?.bg,
+                        getPokemonTypeColorClassNames(primaryType)?.text
+                    )}
                     evolutionChainId={evolutionChainId}
                 />
             )}

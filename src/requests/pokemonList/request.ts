@@ -1,16 +1,17 @@
-import { PaginationInfo } from "../../data/PaginationInfo";
 import { apiRequest } from "../httpClient";
 import { PokemonListInferredType } from "./data";
 import { ApiPathFactory } from "./../ApiPathFactory";
 import { AxiosRequestConfig } from "axios";
+import { NumberOfItemsPerPage } from "./../NetworkConfig";
 
-export async function makeListPokemonRequest(pagination: PaginationInfo) {
+export async function makeListPokemonRequest(pageNumber: number) {
     const listUrl = ApiPathFactory.list;
+
     const searchParams = new URLSearchParams();
-    searchParams.set("offset", pagination.offset.toString());
-    searchParams.set("limit", pagination.limit.toString());
+    searchParams.set("offset", pageNumber.toString());
+    searchParams.set("limit", NumberOfItemsPerPage.DEFAULT.toString());
 
-    const options: AxiosRequestConfig = { params: searchParams };
+    const axiosParams: AxiosRequestConfig = { params: searchParams };
 
-    return apiRequest<PokemonListInferredType>(listUrl, options);
+    return apiRequest<PokemonListInferredType>(listUrl, axiosParams);
 }

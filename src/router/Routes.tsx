@@ -4,12 +4,13 @@ import ListView from "../components/ListView/ListView";
 import IndividualView from "./../components/IndividualView/IndividualView";
 import HeaderBar from "../components/HeaderBar/HeaderBar";
 import { RouteNames } from "./RouteNames";
+import Footer from "../components/Footer";
 
 type RouterProps = React.PropsWithChildren;
 
 const AppRouter: React.FC<RouterProps> = (props) => {
     return (
-        <div className="transition-colors duration-300">
+        <div className="min-h-screen flex flex-col justify-between">
             <HeaderBar />
             <main className="pb-4 md:pb-8 lg:pb-24 px-2 md:px-8">
                 <Routes>
@@ -20,6 +21,7 @@ const AppRouter: React.FC<RouterProps> = (props) => {
                     ></Route>
                 </Routes>
             </main>
+            <Footer />
         </div>
     );
 };

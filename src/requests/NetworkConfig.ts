@@ -5,3 +5,8 @@ export const StalenessTimeoutInMs = Object.freeze({
 export const NumberOfItemsPerPage = {
     DEFAULT: 24,
 };
+
+export const TotalListLength = {
+    Items: 906,
+    Pages: Math.floor(906 / NumberOfItemsPerPage.DEFAULT),
+};

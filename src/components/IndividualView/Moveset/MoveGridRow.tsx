@@ -1,6 +1,7 @@
 import React from "react";
 import { MoveSet } from "../../../requests/moveset/data";
 import { useMoveQuery } from "../../../requests/moveset/hook";
+import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
 import { GridCell, GridRow } from "./AccessibleTableComponents";
 import { getColumnIterator } from "./columnIterator";
 
@@ -10,6 +11,10 @@ type MoveProps = {
     rowId: number;
     hideLearnLevel?: boolean;
 };
+
+function formatName(name: string) {
+    return name.split("-").map(capitalizeFirstLetter).join(" ");
+}
 
 const MoveGridRow: React.FC<MoveProps> = ({
     id,
@@ -46,7 +51,7 @@ const MoveGridRow: React.FC<MoveProps> = ({
                 </GridCell>
             )}
             <GridCell colIndex={columnIterator.next()} className="col-span-2">
-                {move.move.name}
+                {formatName(move.move.name)}
             </GridCell>
             <GridCell
                 colIndex={columnIterator.next()}
