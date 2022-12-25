@@ -10,8 +10,8 @@ export const PokemonTypeColorClassNames = {
         bg: "bg-deep-orange-100",
     } as const,
     [PokemonTypeNames.Fire]: {
-        text: "bg-gray-100",
-        bg: "bg-deep-orange-500",
+        text: "text-gray-100",
+        bg: "bg-deep-orange-800",
     } as const,
     [PokemonTypeNames.Water]: {
         text: "text-blue-900",
