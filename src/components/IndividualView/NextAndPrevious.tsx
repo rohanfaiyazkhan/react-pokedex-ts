@@ -40,7 +40,7 @@ const NextAndPrevious: React.FC<NextAndPreviousProps> = ({ currentIndex }) => {
                     className="fixed right-0 flex items-center justify-center rounded-l-lg bg-red-300 border-l-2 border-red-900 opacity-75"
                     title="View Previous Pokemon"
                     style={{
-                        top: `calc(50% - ${buttonWidth})`,
+                        top: `calc(50% - ${buttonWidth} / 2)`,
                         width: buttonWidth,
                         height: buttonWidth,
                     }}
