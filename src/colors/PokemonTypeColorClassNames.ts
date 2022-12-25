@@ -35,11 +35,11 @@ export const PokemonTypeColorClassNames = {
     } as const,
     [PokemonTypeNames.Poison]: {
         text: "text-gray-100",
-        bg: "bg-purple-400",
+        bg: "bg-purple-900",
     } as const,
     [PokemonTypeNames.Ground]: {
         text: "text-gray-900",
-        bg: "bg-brown-300",
+        bg: "bg-brown-200",
     } as const,
     [PokemonTypeNames.Flying]: {
         text: "text-gray-900",
@@ -47,15 +47,15 @@ export const PokemonTypeColorClassNames = {
     } as const,
     [PokemonTypeNames.Psychic]: {
         text: "text-gray-900",
-        bg: "bg-purple-100",
+        bg: "bg-purple-50",
     } as const,
     [PokemonTypeNames.Bug]: {
         text: "text-gray-900",
-        bg: "bg-lime-300",
+        bg: "bg-lime-50",
     } as const,
     [PokemonTypeNames.Rock]: {
         text: "text-gray-100",
-        bg: "bg-brown-400",
+        bg: "bg-brown-600",
     } as const,
     [PokemonTypeNames.Ghost]: {
         text: "text-gray-900",
@@ -75,6 +75,6 @@ export const PokemonTypeColorClassNames = {
     } as const,
     [PokemonTypeNames.Fairy]: {
         text: "text-gray-900",
-        bg: "bg-pink-300",
+        bg: "bg-pink-100",
     } as const,
 };
