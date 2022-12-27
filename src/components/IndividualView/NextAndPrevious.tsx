@@ -21,7 +21,7 @@ const NextAndPrevious: React.FC<NextAndPreviousProps> = ({ currentIndex }) => {
                     to={getRoute(RouteNames.View, {
                         id: (currentIndex - 1).toString(),
                     })}
-                    className="fixed left-0 flex items-center justify-center rounded-r-lg bg-red-300 border-r-2 border-red-900 opacity-75"
+                    className="fixed left-0 flex items-center justify-center rounded-r-lg bg-red-300 border-r-2 border-red-900 opacity-75 transition-opacity hover:opacity-95 focus:opacity-95"
                     title="View Next Pokemon"
                     style={{
                         top: `calc(50% - ${buttonWidth}/2)`,
@@ -37,7 +37,7 @@ const NextAndPrevious: React.FC<NextAndPreviousProps> = ({ currentIndex }) => {
                     to={getRoute(RouteNames.View, {
                         id: (currentIndex + 1).toString(),
                     })}
-                    className="fixed right-0 flex items-center justify-center rounded-l-lg bg-red-300 border-l-2 border-red-900 opacity-75"
+                    className="fixed right-0 flex items-center justify-center rounded-l-lg bg-red-300 border-l-2 border-red-900 opacity-75 transition-opacity hover:opacity-95 focus:opacity-95"
                     title="View Previous Pokemon"
                     style={{
                         top: `calc(50% - ${buttonWidth} / 2)`,
