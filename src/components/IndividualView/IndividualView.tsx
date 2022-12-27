@@ -102,11 +102,11 @@ const IndividualView: React.FC = (props) => {
                     evolutionChainId={evolutionChainId}
                 />
             )}
-            {pokemonData?.moves && <Movesets moves={pokemonData?.moves} />}
             <FlavorTexts
                 className="col-span-4 col-start-1"
                 flavorTexts={speciesData?.flavor_text_entries}
             />
+            {pokemonData?.moves && <Movesets moves={pokemonData?.moves} />}
         </div>
     );
 };
