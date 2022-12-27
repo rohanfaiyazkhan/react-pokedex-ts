@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { RouteNames } from "../../router/RouteNames";
 import { useScrollToTopOnRouteChange } from "../../utils/hooks/useScrollToTopOnRouteChange";
+import SearchBar from "./SearchBar";
 
 const HeaderBar: React.FC = (props) => {
     useScrollToTopOnRouteChange();
@@ -19,6 +20,7 @@ const HeaderBar: React.FC = (props) => {
                     Find out stats, abilities, movesets and more from all your
                     favourite Pokémon
                 </p>
+                <SearchBar />
             </div>
         </header>
     );
