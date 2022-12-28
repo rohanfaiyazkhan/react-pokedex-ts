@@ -50,6 +50,8 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
     const rootRef = useRef<HTMLDivElement>(null);
     const listElementRef = useRef<HTMLUListElement>(null);
 
+    const { results, isDebouncing } = useSearch(inputQuery, MIN_LENGTH);
+
     const outSideClickListener = (event: MouseEvent) => {
         if (
             !rootRef.current ||
@@ -77,9 +79,18 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
 
     const onInputBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
         setIsFocused(false);
+
+        if (results.length === 0) {
+            setIsDropDownOpen(false);
+        }
     };
 
-    const { results, isDebouncing } = useSearch(inputQuery, MIN_LENGTH);
+    const onListItemBlur: React.FocusEventHandler = (event) => {
+        const target = event.target as HTMLElement;
+        if (!target.parentNode?.nextSibling) {
+            setIsDropDownOpen(false);
+        }
+    };
 
     const onOverlayClick = () => {
         setIsDropDownOpen(false);
@@ -106,9 +117,9 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
                     aria-controls="autocomplete-results"
                     aria-expanded="false"
                     className={combineClassnames(
-                        "flex items-center rounded w-full border border-gray-600 px-2 py-1 bg-gray-100",
+                        "flex items-center rounded w-full border border-gray-600 px-2 py-1 bg-white ",
                         {
-                            "ring ring-blue-900": isFocused,
+                            "ring-2 ring-blue-900": isFocused,
                         }
                     )}
                 >
@@ -139,10 +150,12 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
                     {inputQuery.length > MIN_LENGTH && isDebouncing ? (
                         <li className="block w-full py-0.5 px-3">Loading...</li>
                     ) : (
+                        results.length > 0 &&
                         results.map((result) => (
                             <ListItemOption
                                 key={"search-result-" + result.name}
                                 onClick={onItemSelect}
+                                onBlur={onListItemBlur}
                                 to={getRoute(RouteNames.View, {
                                     id: result.id.toString(),
                                 })}
