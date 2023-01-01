@@ -15,7 +15,9 @@ import { useIndividualPokemonQuery } from "./../../requests/pokemon/hook";
 import { useIndividualPokemonSpeciesQuery } from "./../../requests/pokemonSpecies/hook";
 import { getPokemonTypeColorClassNames } from "./../../colors/getPokemonTypeColorClassNames";
 import { extractIdFromUrl } from "../../requests/extractIdFromUrl";
-import NextAndPrevious from "./NextAndPrevious";
+import FloatingNextAndPreviousButtons from "./FloatingNextAndPreviousButtons";
+import { useIsMobile } from "./../../utils/styles/useIsMobile";
+import HeaderWithPrevNextButtons from "./HeaderWithPrevNextButtons";
 
 const LoadingView: React.FC<{ pokemonName?: string; pokemonId: number }> = (
     props
@@ -35,6 +37,8 @@ const LoadingView: React.FC<{ pokemonName?: string; pokemonId: number }> = (
 };
 
 const IndividualView: React.FC = (props) => {
+    const isMobile = useIsMobile("SM");
+
     const { id: idAsString } = useParams<{ id: string | undefined }>();
 
     const id = Number(idAsString);
@@ -67,13 +71,20 @@ const IndividualView: React.FC = (props) => {
 
     return (
         <div className="flex flex-col space-y-4 md:space-y-0 md:grid md:grid-cols-4 md:gap-x-4 mt-8">
-            <NextAndPrevious currentIndex={id} />
-            <h1 className="text-lg mb-4 col-span-4 font-heading">
-                {padToThreeDigits(id)}.{" "}
-                <span className="capitalize font-bold text-2xl">
-                    {pokemonName}
-                </span>
-            </h1>
+            {!isMobile && <FloatingNextAndPreviousButtons currentIndex={id} />}
+            {isMobile ? (
+                <HeaderWithPrevNextButtons
+                    currentIndex={id}
+                    name={pokemonName}
+                />
+            ) : (
+                <h1 className="text-lg mb-4 col-span-4 font-heading">
+                    {padToThreeDigits(id)}.{" "}
+                    <span className="capitalize font-bold text-2xl">
+                        {pokemonName}
+                    </span>
+                </h1>
+            )}
             <div className={spriteContainerClassNames}>
                 <IndividualViewSpriteDisplay
                     pokemonId={id}

@@ -11,7 +11,9 @@ type NextAndPreviousProps = {
 
 const buttonWidth = "3rem";
 
-const NextAndPrevious: React.FC<NextAndPreviousProps> = ({ currentIndex }) => {
+const FloatingNextAndPreviousButtons: React.FC<NextAndPreviousProps> = ({
+    currentIndex,
+}) => {
     const hasPrev = currentIndex > 1;
     const hasNext = currentIndex < TotalListLength.Items;
     return (
@@ -54,4 +56,4 @@ const NextAndPrevious: React.FC<NextAndPreviousProps> = ({ currentIndex }) => {
     );
 };
 
-export default NextAndPrevious;
+export default FloatingNextAndPreviousButtons;
