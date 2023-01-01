@@ -3,7 +3,7 @@ import { useDebounce } from "../../utils/hooks/useDebounce";
 import {
     pokemonSearchList,
     PokemonSearchResult,
-} from "./../../data/pokemonSearchList";
+} from "../../data/pokemonSearchList";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -44,7 +44,7 @@ function searchCallback(
     return result;
 }
 
-export function useSearch(input: string, minLength: number) {
+export function useDebouncedSearch(input: string, minLength: number) {
     const { debouncedValue, isDebouncing } = useDebounce(input, 500);
     const [results, setResults] = useState<PokemonSearchResult[]>([]);
 

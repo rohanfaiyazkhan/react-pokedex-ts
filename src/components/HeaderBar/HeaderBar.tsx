@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { RouteNames } from "../../router/RouteNames";
 import { useScrollToTopOnRouteChange } from "../../utils/hooks/useScrollToTopOnRouteChange";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 
 const HeaderBar: React.FC = (props) => {
     useScrollToTopOnRouteChange();

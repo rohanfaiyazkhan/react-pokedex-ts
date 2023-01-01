@@ -1,5 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
-import { useState } from "react";
+import React from "react";
 import { Link, LinkProps } from "react-router-dom";
 import { SearchIcon } from "../../assets/svg-components";
 import { PokemonSearchResult } from "../../data/pokemonSearchList";
@@ -7,8 +6,8 @@ import { getRoute } from "../../router/getRoute";
 import { RouteNames } from "../../router/RouteNames";
 import { combineClassnames } from "../../utils/styles/combineClassnames";
 import ScreenOverlay from "./ScreenOverlay";
-
-import { useSearch } from "./useSearch";
+import { SearchBarElementIds } from "./SearchBarElementIds";
+import { MIN_SEARCH_QUERY_INPUT_LENGTH, useSearchBar } from "./useSearchBar";
 
 type SearchBarProps = {};
 
@@ -28,86 +27,46 @@ const SearchResultText: React.FC<{ result: PokemonSearchResult }> = (props) => {
     );
 };
 
-const ListItemOption = (props: LinkProps) => {
+const ListItemOption: React.FC<{ idx: number } & LinkProps> = ({
+    idx,
+    children,
+    ...linkProps
+}) => {
     return (
-        <li className="w-full">
+        <li className="w-full" id={SearchBarElementIds.ItemWithId(idx)}>
             <Link
+                id={SearchBarElementIds.ItemLink}
                 className="block w-full py-0.5 px-3 hover:bg-blue-200 focus:bg-blue-100"
-                {...props}
+                {...linkProps}
             >
-                {props.children}
+                {children}
             </Link>
         </li>
     );
 };
 
-const MIN_LENGTH = 3;
-
 const SearchBar: React.FC<SearchBarProps> = (props) => {
-    const [isFocused, setIsFocused] = useState(false);
-    const [isDropdownOpen, setIsDropDownOpen] = useState(false);
-    const [inputQuery, setInputQuery] = useState("");
-    const rootRef = useRef<HTMLDivElement>(null);
-    const listElementRef = useRef<HTMLUListElement>(null);
-
-    const { results, isDebouncing } = useSearch(inputQuery, MIN_LENGTH);
-
-    const outSideClickListener = (event: MouseEvent) => {
-        if (
-            !rootRef.current ||
-            !rootRef.current.contains(event.target as Node)
-        ) {
-            setIsDropDownOpen(false);
-        }
-    };
-
-    useLayoutEffect(() => {
-        document.body.addEventListener("click", outSideClickListener);
-
-        return () =>
-            document.body.removeEventListener("click", outSideClickListener);
-    }, []);
-
-    const onChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-        setInputQuery(event.target.value);
-    };
-
-    const onInputFocus: React.FocusEventHandler<HTMLInputElement> = (event) => {
-        setIsFocused(true);
-        setIsDropDownOpen(true);
-    };
-
-    const onInputBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
-        setIsFocused(false);
-
-        if (results.length === 0) {
-            setIsDropDownOpen(false);
-        }
-    };
-
-    const onListItemBlur: React.FocusEventHandler = (event) => {
-        const target = event.target as HTMLElement;
-        if (!target.parentNode?.nextSibling) {
-            setIsDropDownOpen(false);
-        }
-    };
-
-    const onOverlayClick = () => {
-        setIsDropDownOpen(false);
-    };
-
-    const onItemSelect: React.MouseEventHandler<HTMLAnchorElement> = (
-        event
-    ) => {
-        setInputQuery("");
-        setIsDropDownOpen(false);
-    };
+    const {
+        rootContainerRef,
+        inputQuery,
+        isFocused,
+        isDropdownOpen,
+        listElementRef,
+        isDebouncing,
+        onChange,
+        onInputFocus,
+        onInputBlur,
+        onListItemBlur,
+        onOverlayClick,
+        onItemSelect,
+        results,
+    } = useSearchBar();
 
     return (
         <>
             <ScreenOverlay visible={isDropdownOpen} onClick={onOverlayClick} />
             <div
-                ref={rootRef}
+                ref={rootContainerRef}
                 onSubmit={(e) => e.preventDefault()}
                 className="relative mt-4 mb-2"
                 style={{ zIndex: 100 }}
@@ -125,6 +84,7 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
                 >
                     <SearchIcon className="w-4 h-4 mr-2 text-gray-700" />
                     <input
+                        id={SearchBarElementIds.Input}
                         className="flex-grow text-lg focus:outline-none"
                         placeholder="Search for a Pokémon"
                         value={inputQuery}
@@ -144,14 +104,15 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
                         maxHeight: "min(60vh, 36rem)",
                     }}
                     role="listbox"
-                    id="autocomplete-results"
+                    id={SearchBarElementIds.Results}
                     ref={listElementRef}
                 >
-                    {inputQuery.length > MIN_LENGTH && isDebouncing ? (
+                    {inputQuery.length > MIN_SEARCH_QUERY_INPUT_LENGTH &&
+                    isDebouncing ? (
                         <li className="block w-full py-0.5 px-3">Loading...</li>
                     ) : (
                         results.length > 0 &&
-                        results.map((result) => (
+                        results.map((result, idx) => (
                             <ListItemOption
                                 key={"search-result-" + result.name}
                                 onClick={onItemSelect}
@@ -159,6 +120,7 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
                                 to={getRoute(RouteNames.View, {
                                     id: result.id.toString(),
                                 })}
+                                idx={idx + 1}
                             >
                                 <SearchResultText result={result} />
                             </ListItemOption>
