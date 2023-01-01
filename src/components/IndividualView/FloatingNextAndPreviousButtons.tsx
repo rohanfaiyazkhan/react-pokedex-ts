@@ -41,7 +41,7 @@ const FloatingNextAndPreviousButtons: React.FC<NextAndPreviousProps> = ({
                         id: (currentIndex + 1).toString(),
                     })}
                     className="fixed right-0 flex items-center justify-center rounded-l-lg bg-red-300 border-l-2 border-red-900 opacity-75 transition-opacity hover:opacity-95 focus:opacity-95"
-                    title="View Previous Pokemon"
+                    title="View Next Pokemon"
                     style={{
                         top: "50%",
                         width: buttonWidth,
