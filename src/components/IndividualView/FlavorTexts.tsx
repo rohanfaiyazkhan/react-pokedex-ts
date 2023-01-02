@@ -65,7 +65,9 @@ const FlavorTexts: React.FC<FlavorTextsProps> = ({
 
     return (
         <div className={className} style={style}>
-            <p className="my-4 text-lg">Pokedex Entries</p>
+            <h3 className="mt-4 mb-2 text-lg font-heading font-bold">
+                Pokédex Entries
+            </h3>
             <ul className="text-sm bg-red-100 rounded-md flex flex-col">
                 <li className="px-4 py-4 flex border-b bg-red-900 text-red-100 font-bold rounded-t-md">
                     <p className="font-bold w-1/4 max-w-xs mr-4">Version</p>

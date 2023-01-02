@@ -7,4 +7,5 @@ export const ApiPathFactory = {
         `/${ResourceKeys.EvolutionChain}/${id}` as const,
     move: (id: number | string) => `/${ResourceKeys.Move}/${id}` as const,
     list: `/pokemon` as const,
+    type: (id: number | string) => `/${ResourceKeys.Type}/${id}` as const,
 };

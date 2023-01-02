@@ -4,4 +4,5 @@ export const ResourceKeys = {
     Species: "pokemon-species",
     EvolutionChain: "evolution-chain",
     Move: "move",
+    Type: "type",
 } as const;

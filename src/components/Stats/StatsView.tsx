@@ -60,7 +60,7 @@ const StatsView: React.FC<StatsProps> = ({ stats, className, style }) => {
 
     return (
         <div className={className} style={style}>
-            <p>Base Stats</p>
+            <p className="mt-4 text-lg font-heading font-bold">Base Stats</p>
             <ul className="flex flex-col" style={style}>
                 {stats.map((stat) => (
                     <li className="flex items-center" key={stat.stat.name}>

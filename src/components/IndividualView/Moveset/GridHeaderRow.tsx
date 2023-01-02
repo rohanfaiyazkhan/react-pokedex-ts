@@ -1,13 +1,13 @@
 import React from "react";
+import { getIterator } from "../../../utils/getIterator";
 import { GridRow, GridColumnHeader } from "./AccessibleTableComponents";
-import { getColumnIterator } from "./columnIterator";
 
 type GridHeaderRowProps = {
     hideLearnLevel?: boolean;
 };
 
 const GridHeaderRow: React.FC<GridHeaderRowProps> = ({ hideLearnLevel }) => {
-    const columnIterator = getColumnIterator(1);
+    const columnIterator = getIterator(1);
 
     return (
         <GridRow rowIndex={1}>
