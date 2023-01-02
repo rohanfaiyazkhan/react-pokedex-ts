@@ -6,10 +6,11 @@ The app also shows each individual Pokémon's stats, movesets, abilities and fla
 
 Some key things about the project:
 
--   I used React and Typescript project
--   I used Tailwind CSS styling, which is my preferred way to write CSS in a React project. I did add some extra colors found in `src/colors/customColors.js' which was taken from this excellent [color set](https://davidpiesse.github.io/tailwind-md-colours/) made by David Piesse. The color set was added because I wanted a specific color background for each pokemon type (e.g. fire, water) and the additional colors helped significantly.
--   I used [@tanstack/react-query](https://react-query-v3.tanstack.com/) with [axios](https://axios-http.com/docs/intro) for handling network requests with **caching**, **staleness verification**, **infinite scroll** and more. Request specific code can be found under `src/requests`.
--   Accessible indexed search which lets users search for any Pokemon
+-   React and Typescript are the key building blocks
+-   Tailwind CSS for styling. I did add some extra colors found in `src/colors/customColors.js` which was taken from this excellent [color set](https://davidpiesse.github.io/tailwind-md-colours/) made by David Piesse. The color set was added because I wanted a specific color background for each pokemon type (e.g. fire, water) and the additional colors helped significantly.
+-   I used [@tanstack/react-query](https://react-query-v3.tanstack.com/) with [axios](https://axios-http.com/docs/intro) for handling network requests with **caching**, **staleness verification** and **infinite scroll**. Request specific code can be found under `src/requests`.
+-   Accessible search bar which lets users search for any Pokemon. A locally cached indexed list of Pokémon is used to filter through when the user types a search query (the filtering is done after a debounce period). In a real world application, this list would likely be provided by a API endpoint or a microservice like Algolia Elasticsearch.
+-   Individual Pokémon view details useful information about each Pokémon, such as types, abilities, evolution details, type weaknesses, movesets, and Pokédex entries
 
 ## Demo
 
