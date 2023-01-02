@@ -13,7 +13,7 @@ const PokemonType: React.FC<PokemonTypeProps> = ({ name }) => {
             className={combineClassnames(
                 typeStyles?.bg,
                 typeStyles?.text,
-                "px-2 py-1 font-bold mr-2 uppercase border border-current rounded-sm"
+                "px-2 py-1 font-bold mr-2 mb-1 uppercase border border-current rounded-sm"
             )}
         >
             {name}

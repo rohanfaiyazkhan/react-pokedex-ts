@@ -41,7 +41,7 @@ function getTypeDamageRelations(results: PokemonTypeInferredType[]) {
                     : 2;
         }
 
-        const halfDamageFrom = type.damage_relations.half_damage_to;
+        const halfDamageFrom = type.damage_relations.half_damage_from;
 
         for (const relatedType of halfDamageFrom) {
             weaknesses[relatedType.name] =
@@ -50,7 +50,7 @@ function getTypeDamageRelations(results: PokemonTypeInferredType[]) {
                     : 0.5;
         }
 
-        const noDamageFrom = type.damage_relations.no_damage_to;
+        const noDamageFrom = type.damage_relations.no_damage_from;
 
         for (const relatedType of noDamageFrom) {
             weaknesses[relatedType.name] = 0;
