@@ -2,8 +2,8 @@ import React from "react";
 import { MoveSet } from "../../../requests/moveset/data";
 import { useMoveQuery } from "../../../requests/moveset/hook";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
+import { getIterator } from "../../../utils/getIterator";
 import { GridCell, GridRow } from "./AccessibleTableComponents";
-import { getColumnIterator } from "./columnIterator";
 
 type MoveProps = {
     id: number;
@@ -24,7 +24,7 @@ const MoveGridRow: React.FC<MoveProps> = ({
 }) => {
     const moveQueryResult = useMoveQuery(id);
 
-    const columnIterator = getColumnIterator(1);
+    const columnIterator = getIterator(1);
 
     const lastVersionMoveDetails =
         move.version_group_details[move.version_group_details.length - 1];

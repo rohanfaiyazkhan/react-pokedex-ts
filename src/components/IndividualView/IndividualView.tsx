@@ -4,7 +4,7 @@ import { PokemonUnexpectedIdError } from "../../data/missingPokemonDataErrors/Po
 import LoadingSpinner from "./../StatusIndicators/LoadingSpinner";
 import IndividualViewSpriteDisplay from "./IndividualViewSpriteDisplay";
 import { combineClassnames } from "../../utils/styles/combineClassnames";
-import PokemonTypes from "./PokemonTypes";
+import PokemonTypes from "./Types/PokemonTypes";
 import Abilities from "./Abilities";
 import StatsView from "../Stats/StatsView";
 import FlavorTexts from "./FlavorTexts";
@@ -18,6 +18,7 @@ import { extractIdFromUrl } from "../../requests/extractIdFromUrl";
 import FloatingNextAndPreviousButtons from "./FloatingNextAndPreviousButtons";
 import { useIsMobile } from "./../../utils/styles/useIsMobile";
 import HeaderWithPrevNextButtons from "./HeaderWithPrevNextButtons";
+import TypeWeaknesses from "./Types/TypeWeaknesses";
 
 const LoadingView: React.FC<{ pokemonName?: string; pokemonId: number }> = (
     props
@@ -103,6 +104,14 @@ const IndividualView: React.FC = (props) => {
                 className="col-span-2 col-start-3 mt-4"
                 stats={pokemonData?.stats}
             />
+            {pokemonData?.types && (
+                <TypeWeaknesses
+                    className="col-span-4 col-start-1 justify-start"
+                    style={{ width: "min(728px, 100%)" }}
+                    types={pokemonData?.types}
+                />
+            )}
+
             {evolutionChainId !== undefined && (
                 <EvolutionChainsView
                     className="col-span-4 col-start-1"

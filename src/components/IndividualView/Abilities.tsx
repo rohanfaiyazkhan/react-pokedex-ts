@@ -16,7 +16,7 @@ const Abilities: React.FC<AbilitiesProps> = ({
 
     return (
         <div className={className} style={style}>
-            <p className="font-bold mb-1 font-heading">Abilities</p>
+            <h3 className="font-bold mb-1 font-heading">Abilities</h3>
             <ol>
                 {abilities.map((ability, idx) => (
                     <li key={`ability-${ability.ability.name}-${idx}`}>

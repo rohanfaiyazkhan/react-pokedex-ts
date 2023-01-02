@@ -1,4 +1,4 @@
-export function getColumnIterator(start: number = 0) {
+export function getIterator(start: number = 0) {
     let counter = start;
 
     return {
