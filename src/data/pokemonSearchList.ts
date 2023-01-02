@@ -3,6 +3,12 @@ export type PokemonSearchResult = PokemonSearchInfo & {
     match: { start: number; end: number };
 };
 
+/**
+ * An indexed list of pokemon available from PokeAPI as of January 2023.
+ * This is used as a local version of an indexed search list.
+ * When we type something in the searchbar we are actually filtering through this list.
+ * In an actual application this would be provided by an API or a microservice like Algolia ElasticSearch.
+ */
 export const pokemonSearchList: PokemonSearchInfo[] = [
     { name: "bulbasaur", id: 1 },
     { name: "ivysaur", id: 2 },
