@@ -5,6 +5,7 @@ import IndividualView from "./../components/IndividualView/IndividualView";
 import HeaderBar from "../components/HeaderBar/HeaderBar";
 import { RouteNames } from "./RouteNames";
 import Footer from "../components/Footer";
+import NoPageFound from "./NoPageFound";
 
 type RouterProps = React.PropsWithChildren;
 
@@ -19,6 +20,7 @@ const AppRouter: React.FC<RouterProps> = (props) => {
                         path={RouteNames.View}
                         element={<IndividualView />}
                     ></Route>
+                    <Route path="*" element={<NoPageFound />} />
                 </Routes>
             </main>
             <Footer />
