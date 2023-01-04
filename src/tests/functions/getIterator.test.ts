@@ -1,4 +1,4 @@
-import { getIterator } from "./../../utils/getIterator";
+import { getIterator } from "../../utils/getIterator";
 
 describe("getIterator correctly returns an iterator that iterates a value when called", () => {
     const iterator = getIterator(5);

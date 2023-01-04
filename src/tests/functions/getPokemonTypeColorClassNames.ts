@@ -1,5 +1,5 @@
-import { getPokemonTypeColorClassNames } from "./../../colors/getPokemonTypeColorClassNames";
-import { PokemonTypeNames } from "./../../data/PokemonTypes/PokemonTypeNames";
+import { getPokemonTypeColorClassNames } from "../../colors/getPokemonTypeColorClassNames";
+import { PokemonTypeNames } from "../../data/PokemonTypes/PokemonTypeNames";
 
 describe("getPokemonTypeColorClassNames properly returns type appropriate color class names", () => {
     const empty = getPokemonTypeColorClassNames();

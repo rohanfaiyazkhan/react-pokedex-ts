@@ -1,5 +1,5 @@
-import { getRoute } from "./../../router/getRoute";
-import { RouteNames } from "./../../router/RouteNames";
+import { getRoute } from "../../router/getRoute";
+import { RouteNames } from "../../router/RouteNames";
 
 describe("getRoute correctly returns expected Routes", () => {
     const listRoute = getRoute(RouteNames.Home);
