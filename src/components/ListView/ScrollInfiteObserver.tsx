@@ -40,10 +40,7 @@ const ScrollInfiteObserver: React.FC<ScrollInfiteObserverProps> = ({
     const infiniteObserverCallback = useCallback<IntersectionObserverCallback>(
         (entries) => {
             const [entry] = entries;
-            console.debug("Intersection detected", {
-                isIntersecting: entry.isIntersecting,
-                isFetching,
-            });
+
             if (entry.isIntersecting && !isFetching) {
                 fetchNextPage();
             }
