@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ArrowRightIcon from "../../assets/svg-components/ArrowRightIcon";
-import { TotalListLength } from "../../requests/NetworkConfig";
-import { getRoute } from "../../router/getRoute";
-import { RouteNames } from "../../router/RouteNames";
+import ArrowRightIcon from "../../../assets/svg-components/ArrowRightIcon";
+import { TotalListLength } from "../../../requests/NetworkConfig";
+import { getRoute } from "../../../router/getRoute";
+import { RouteNames } from "../../../router/RouteNames";
 
 type NextAndPreviousProps = {
     currentIndex: number;
