@@ -74,7 +74,7 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
                 <div
                     role="combobox"
                     aria-controls="autocomplete-results"
-                    aria-expanded="false"
+                    aria-expanded={isDropdownOpen}
                     className={combineClassnames(
                         "flex items-center rounded w-full border border-gray-600 px-2 py-1 bg-white ",
                         {
