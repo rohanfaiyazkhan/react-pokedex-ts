@@ -11,18 +11,18 @@ const baseUrl = BASE_API_URL;
 
 export const handlers = [
     rest.get(baseUrl + ApiPathFactory.pokemon(":id"), (req, res, ctx) => {
-        return res(ctx.delay(2000), ctx.json(mockPokemonResponse));
+        return res(ctx.delay(1000), ctx.json(mockPokemonResponse));
     }),
     rest.get(baseUrl + ApiPathFactory.species(":id"), (req, res, ctx) => {
-        return res(ctx.delay(2000), ctx.json(mockSpeciesResponse));
+        return res(ctx.delay(1000), ctx.json(mockSpeciesResponse));
     }),
     rest.get(
         baseUrl + ApiPathFactory.evolutionChain(":id"),
         (req, res, ctx) => {
-            return res(ctx.delay(2000), ctx.json(mockEvolutionChain));
+            return res(ctx.delay(1000), ctx.json(mockEvolutionChain));
         }
     ),
     rest.get(baseUrl + ApiPathFactory.list, (req, res, ctx) => {
-        return res(ctx.delay(2000), ctx.json(mockListResponse));
+        return res(ctx.delay(1000), ctx.json(mockListResponse));
     }),
 ];
