@@ -32,12 +32,22 @@ export function useSearchBar() {
     }, []);
 
     const onChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+        const value = event.target.value;
         setInputQuery(event.target.value);
+
+        if (value.length >= MIN_SEARCH_QUERY_INPUT_LENGTH) {
+            setIsDropDownOpen(true);
+        } else {
+            setIsDropDownOpen(false);
+        }
     };
 
     const onInputFocus: React.FocusEventHandler<HTMLInputElement> = (event) => {
         setIsFocused(true);
-        setIsDropDownOpen(true);
+
+        if (inputQuery.length >= MIN_SEARCH_QUERY_INPUT_LENGTH) {
+            setIsDropDownOpen(true);
+        }
     };
 
     const onInputBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
