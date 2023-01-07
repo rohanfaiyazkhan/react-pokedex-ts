@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ArrowRightIcon from "../../assets/svg-components/ArrowRightIcon";
-import { TotalListLength } from "../../requests/NetworkConfig";
-import { getRoute } from "../../router/getRoute";
-import { RouteNames } from "../../router/RouteNames";
+import ArrowRightIcon from "../../../assets/svg-components/ArrowRightIcon";
+import { TotalListLength } from "../../../requests/NetworkConfig";
+import { getRoute } from "../../../router/getRoute";
+import { RouteNames } from "../../../router/RouteNames";
 
 type NextAndPreviousProps = {
     currentIndex: number;
@@ -24,7 +24,7 @@ const FloatingNextAndPreviousButtons: React.FC<NextAndPreviousProps> = ({
                         id: (currentIndex - 1).toString(),
                     })}
                     className="fixed left-0 flex items-center justify-center rounded-r-lg bg-red-300 border-r-2 border-red-900 opacity-75 transition-opacity hover:opacity-95 focus:opacity-95"
-                    title="View Next Pokemon"
+                    title="View Previous Pokemon"
                     style={{
                         top: "50%",
                         width: buttonWidth,

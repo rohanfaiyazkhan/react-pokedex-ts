@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SpriteCentrePiece from "./../SpriteCenterPiece/SpriteCentrePiece";
 import { generatePath } from "react-router";
 import { combineClassnames } from "../../utils/styles/combineClassnames";
+import "./listCard.css";
 
 type ListCardProps = {
     pokemonId: number;
@@ -15,7 +16,7 @@ function getIndividualCardUrl(id: number) {
 
 const ListCard: React.FC<ListCardProps> = ({ pokemonId, name }) => {
     const baseClassNames =
-        "relative px-8 py-3 bg-gradient-to-b from-red-100 to-red-200 border border-gray-500 rounded-lg flex flex-col items-center justify-center shadow-xl scale-100";
+        "alternating-background relative px-8 py-3 bg-red-100 xl:bg-gradient-to-b from-red-100 to-red-200 border border-gray-500 rounded lg:rounded-lg flex flex-col items-center justify-center shadow-xl scale-100";
     const transitionClassNames =
         "transition-transform hover:scale-105 focus:ring-red-300";
     const rootClassNames = combineClassnames(
@@ -35,7 +36,7 @@ const ListCard: React.FC<ListCardProps> = ({ pokemonId, name }) => {
                 pokemonName={name}
             />
             <p className="z-10 flex items-center justify-start pt-2">
-                <span className="mr-2 text-sm xl:text-lg">{pokemonId}.</span>
+                <span className="mr-2  text-sm xl:text-lg">{pokemonId}.</span>
                 <span className="uppercase text-lg">{name}</span>
             </p>
         </Link>

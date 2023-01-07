@@ -9,7 +9,7 @@ type ListCardPageProps = {
 
 const ListCardPage: React.FC<ListCardPageProps> = ({ page, startIndex }) => {
     return (
-        <div className="flex flex-col space-y-2 md:space-y-0 md:grid md:grid-cols-4 md:gap-2 lg:gap-4 mb-2 lg:mb-4">
+        <div className="grid xs:grid-cols-2 md:grid-cols-4 gap-2 lg:gap-4 mb-2 lg:mb-4">
             {page.results.map((data, idx) => {
                 const pokemonId = startIndex + idx;
 

@@ -64,7 +64,10 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
 
     return (
         <>
-            <ScreenOverlay visible={isDropdownOpen} onClick={onOverlayClick} />
+            <ScreenOverlay
+                visible={isFocused || isDropdownOpen}
+                onClick={onOverlayClick}
+            />
             <div
                 ref={rootContainerRef}
                 onSubmit={(e) => e.preventDefault()}
@@ -72,9 +75,6 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
                 style={{ zIndex: 100 }}
             >
                 <div
-                    role="combobox"
-                    aria-controls="autocomplete-results"
-                    aria-expanded="false"
                     className={combineClassnames(
                         "flex items-center rounded w-full border border-gray-600 px-2 py-1 bg-white ",
                         {
@@ -84,9 +84,13 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
                 >
                     <SearchIcon className="w-4 h-4 mr-2 text-gray-700" />
                     <input
+                        role="combobox"
+                        aria-controls="autocomplete-results"
+                        aria-expanded={isDropdownOpen}
                         id={SearchBarElementIds.Input}
                         className="flex-grow text-lg focus:outline-none"
                         placeholder="Search for a Pokémon"
+                        aria-label="search-input"
                         value={inputQuery}
                         onChange={onChange}
                         onFocus={onInputFocus}
@@ -107,7 +111,7 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
                     id={SearchBarElementIds.Results}
                     ref={listElementRef}
                 >
-                    {inputQuery.length > MIN_SEARCH_QUERY_INPUT_LENGTH &&
+                    {inputQuery.length >= MIN_SEARCH_QUERY_INPUT_LENGTH &&
                     isDebouncing ? (
                         <li className="block w-full py-0.5 px-3">Loading...</li>
                     ) : (

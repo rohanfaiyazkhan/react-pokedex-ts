@@ -15,9 +15,9 @@ import { useIndividualPokemonQuery } from "./../../requests/pokemon/hook";
 import { useIndividualPokemonSpeciesQuery } from "./../../requests/pokemonSpecies/hook";
 import { getPokemonTypeColorClassNames } from "./../../colors/getPokemonTypeColorClassNames";
 import { extractIdFromUrl } from "../../requests/extractIdFromUrl";
-import FloatingNextAndPreviousButtons from "./FloatingNextAndPreviousButtons";
+import FloatingNextAndPreviousButtons from "./PreviousAndNext/FloatingNextAndPreviousButtons";
 import { useIsMobile } from "./../../utils/styles/useIsMobile";
-import HeaderWithPrevNextButtons from "./HeaderWithPrevNextButtons";
+import HeaderWithPrevNextButtons from "./PreviousAndNext/HeaderWithPrevNextButtons";
 import TypeWeaknesses from "./Types/TypeWeaknesses";
 
 const LoadingView: React.FC<{ pokemonName?: string; pokemonId: number }> = (
