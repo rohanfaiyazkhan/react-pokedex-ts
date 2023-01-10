@@ -23,6 +23,10 @@ export const handlers = [
         }
     ),
     rest.get(baseUrl + ApiPathFactory.list, (req, res, ctx) => {
-        return res(ctx.delay(1000), ctx.json(mockListResponse));
+        const offset = req.url.searchParams.get("offset");
+
+        const response = mockListResponse(Number(offset));
+
+        return res(ctx.delay(1000), ctx.json(response));
     }),
 ];
