@@ -4,6 +4,18 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import { SearchBarElementIds } from "./../../components/SearchBar/SearchBarElementIds";
 import { MemoryRouter } from "react-router";
 
+beforeAll(() => {
+    jest.useFakeTimers();
+});
+
+afterEach(() => {
+    jest.clearAllTimers();
+});
+
+afterAll(() => {
+    jest.useRealTimers();
+});
+
 test("Search bar component", async () => {
     render(
         <MemoryRouter>
